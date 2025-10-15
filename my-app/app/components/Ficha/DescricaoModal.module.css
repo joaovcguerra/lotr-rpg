@@ -1,0 +1,45 @@
+/* app/components/Ficha/DescricaoModal.module.css */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: #1e192d;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #4a3f66;
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.modalTitle {
+    color: #c9bfff;
+    margin: 0;
+    text-align: center;
+    border-bottom: 1px solid #4a3f66;
+    padding-bottom: 1rem;
+}
+
+.modalTextarea {
+    padding: 0.7rem;
+    border-radius: 6px;
+    border: 1px solid #4a3f66;
+    background-color: #1a142b;
+    color: #e0e0e0;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+}

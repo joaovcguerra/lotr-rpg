@@ -1,0 +1,237 @@
+/* app/components/Ficha/ColunaEsquerda.module.css */
+
+/* Regras de estilo base que estavam faltando */
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.field:last-child {
+    margin-bottom: 0;
+}
+
+.field label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #aaa;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.field input {
+    padding: 0.7rem;
+    border-radius: 6px;
+    border: 1px solid #4a3f66;
+    background-color: #1a142b;
+    color: #e0e0e0;
+    font-size: 1rem;
+    min-width: 0;
+}
+
+.infoGeral {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.profilePic {
+    width: 120px;
+    height: 120px;
+    background-color: #1a142b;
+    border: 2px solid #4a3f66;
+    border-radius: 50%;
+    margin: 0 auto 1rem auto;
+}
+
+.buttonSmall {
+    padding: 0.5rem 1rem;
+    background-color: #4a3f66;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.buttonSmall:hover {
+    background-color: #5d4f82;
+}
+
+.classLevelFields {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+}
+
+.classLevelFields>.field {
+    margin-bottom: 0;
+}
+
+.ageHeightFields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+}
+
+.ageHeightFields>.field {
+    margin-bottom: 0;
+}
+
+.ageHeightFields>.field input {
+    width: 100%;
+}
+
+.levelInput {
+    width: 70px;
+    text-align: center;
+}
+
+/* Estilos de Status */
+.barTitle {
+    font-size: 1rem;
+    color: #c9bfff;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.statusBarContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.statusBar {
+    flex-grow: 1;
+    position: relative;
+    background-color: #1a142b;
+    border: 1px solid #4a3f66;
+    border-radius: 8px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.statusBarFill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    border-radius: 7px;
+    transition: width 0.3s ease-in-out;
+}
+
+.hpBar {
+    background-color: #8c2a3e;
+}
+
+.manaBar {
+    background-color: #2a5a8c;
+}
+
+.statusBarValues {
+    position: relative;
+    z-index: 2;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.maxStatInput {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    width: 40px;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+}
+
+.maxStatInput::-webkit-outer-spin-button,
+.maxStatInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.statusBarButton {
+    background: none;
+    border: 1px solid #4a3f66;
+    color: #aaa;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.statusBarButton:hover {
+    background-color: #4a3f66;
+    color: #fff;
+}
+
+.changeInputContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.changeInputField {
+    display: flex;
+    flex-direction: column;
+}
+
+.changeInputField label {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: 0.25rem;
+    padding-left: 0.5rem;
+}
+
+.smallInput {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+    background-color: #1a142b;
+    border: 1px solid #4a3f66;
+    border-radius: 99px;
+    color: #e0e0e0;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+}
+
+.smallInput::-webkit-outer-spin-button,
+.smallInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.otherStats {
+    margin-top: 1rem;
+}
+
+.otherStats p {
+    background-color: #1a142b;
+    padding: 0.8rem;
+    border-radius: 6px;
+    margin: 0 0 0.5rem 0;
+}

@@ -1,0 +1,139 @@
+/* app/components/Ficha/ColunaMeio.module.css */
+
+.tabNav {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #4a3f66;
+    margin-bottom: 1.5rem;
+}
+
+.tabButton {
+    background: none;
+    border: none;
+    color: #aaa;
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.tabButton:hover {
+    color: #fff;
+}
+
+.activeTab {
+    color: #c9bfff;
+    border-bottom-color: #8a6df2;
+}
+
+.tabContent {
+    min-height: 100px;
+}
+
+.ability,
+.item {
+    background-color: #1a142b;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    border-left: 3px solid #8a6df2;
+}
+
+/* Estilos do Inventário */
+.inventoryWrapper {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 1rem;
+}
+
+.inventoryTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inventoryTable th,
+.inventoryTable td {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid #4a3f66;
+}
+
+.inventoryTable th {
+    color: #c9bfff;
+    font-size: 0.9rem;
+    position: sticky;
+    top: 0;
+    background-color: rgba(30, 25, 45, 1);
+}
+
+.inventoryTable input,
+.inventoryTable textarea {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-family: inherit;
+    font-size: 1rem;
+    width: 100%;
+    padding: 0.2rem;
+}
+
+.inventoryTable textarea {
+    resize: vertical;
+    min-height: 28px;
+}
+
+.inventoryTable td:nth-child(2) {
+    width: 120px;
+}
+
+.inventoryTable td:nth-child(3) {
+    width: 60px;
+}
+
+.quantityInput {
+    text-align: center;
+}
+
+.inventoryTable td:nth-child(5) {
+    width: 40px;
+    text-align: center;
+}
+
+.deleteItemButton {
+    background: none;
+    border: none;
+    color: #aaa;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.deleteItemButton:hover {
+    color: #ef4444;
+}
+
+.quantityInput {
+    text-align: center;
+    /* Adiciona as propriedades para remover as setas */
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+    margin: 0;
+    /* Necessário para alguns navegadores */
+}
+
+.openDescriptionButton {
+    background-color: #4a3f66;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.openDescriptionButton:hover {
+    background-color: #5d4f82;
+}

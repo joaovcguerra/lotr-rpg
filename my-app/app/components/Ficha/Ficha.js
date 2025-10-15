@@ -2,72 +2,9 @@
 
 import { useState, useMemo } from 'react';
 import styles from './Ficha.module.css';
-// A importação da biblioteca de dados foi REMOVIDA.
-
-// ===== NOSSO NOVO ROLADOR DE DADOS =====
-
-/**
- * Interpreta uma notação de dado (ex: "4d6d1+5") e retorna o resultado.
- * @param {string} notation - A string da notação a ser rolada.
- * @returns {{total: number, output: string}}
- */
-function rollCustomDice(notation) {
-    let output = `Rolagem: ${notation} -> `;
-    let processedNotation = notation.replace(/\s+/g, ''); // Remove espaços
-
-    // Regex para encontrar expressões de dados como "4d6", "12d100k3", "d20d1", etc.
-    const diceExpressionRegex = /(\d*)d(\d+)([kd])?(\d*)/g;
-
-    processedNotation = processedNotation.replace(diceExpressionRegex, (match, numDice, numSides, modifier, modifierValue) => {
-        const count = numDice ? parseInt(numDice) : 1;
-        const sides = parseInt(numSides);
-        const modVal = modifierValue ? parseInt(modifierValue) : 0;
-
-        if (count === 0 || sides === 0) return '0';
-
-        let rolls = [];
-        for (let i = 0; i < count; i++) {
-            rolls.push(Math.floor(Math.random() * sides) + 1);
-        }
-
-        let resultRolls = [...rolls]; // Cópia para calcular o total
-        let outputRolls = [...rolls]; // Cópia para exibir na string
-
-        // Lógica de Keep/Drop
-        if (modifier && modVal > 0 && modVal < count) {
-            resultRolls.sort((a, b) => a - b); // Ordena do menor para o maior
-
-            if (modifier === 'd') { // d = Drop Lowest
-                resultRolls = resultRolls.slice(modVal);
-            } else if (modifier === 'k') { // k = Keep Highest
-                resultRolls = resultRolls.slice(count - modVal);
-            }
-        }
-
-        // Formata a saída para mostrar os dados rolados
-        const rollsString = `[${outputRolls.join(', ')}]`;
-        output += `${match}${rollsString} `;
-
-        // Soma os dados que restaram após o keep/drop
-        return resultRolls.reduce((sum, val) => sum + val, 0);
-    });
-
-    // Tenta resolver a matemática simples (adição/subtração)
-    let total;
-    try {
-        // Usamos uma forma segura de avaliar a expressão matemática
-        total = Function(`'use strict'; return (${processedNotation})`)();
-    } catch (e) {
-        return { total: 'Erro', output: 'Notação matemática inválida' };
-    }
-
-    output += `= ${total}`;
-
-    return { total, output };
-}
+import { rollCustomDice } from '../../utils/diceParser.js';
 
 
-// Função auxiliar (permanece a mesma)
 const getModifier = (value) => {
     const num = parseInt(value, 10);
     if (isNaN(num)) return '...';
@@ -102,22 +39,28 @@ export default function Ficha() {
     }, [atributos.constituicao, atributos.carisma]);
 
     const handleRoll = () => {
-        const result = rollCustomDice(notation); // Usa nossa nova função
+        if (!notation) return;
+        const result = rollCustomDice(notation);
         setRollResult(result);
         setRollHistory(prevHistory => [result, ...prevHistory].slice(0, 10));
     };
 
     const handleQuickRoll = (die) => {
-        const result = rollCustomDice(die); // Usa nossa nova função
+        const result = rollCustomDice(die);
         setRollResult(result);
         setNotation(die);
         setRollHistory(prevHistory => [result, ...prevHistory].slice(0, 10));
     };
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleRoll();
+        }
+    };
+
     return (
         <div className={styles.fichaGridContainer}>
-            {/* O JSX (toda a parte visual) permanece exatamente o mesmo */}
-            {/* Coluna da Esquerda */}
+            {/* O JSX das colunas da Esquerda e do Meio não mudou */}
             <div className={styles.column}>
                 <div className={styles.section}>
                     <h2 className={styles.sectionTitle}>Informações Gerais</h2>
@@ -157,19 +100,19 @@ export default function Ficha() {
                     </div>
                 </div>
             </div>
-            {/* Coluna do Meio */}
             <div className={styles.column}>
                 <div className={styles.section}> <h2 className={styles.sectionTitle}>Habilidades de Raça</h2> <div className={styles.ability}> <strong>Talento:</strong> Leveza Élfica </div> <div className={styles.ability}> <strong>Mau Hábito:</strong> Desgosto por Anões </div> </div>
                 <div className={styles.section}> <h2 className={styles.sectionTitle}>Habilidades de Classe</h2> <div className={styles.ability}> <strong>Técnica:</strong> Tiro Profundo </div> <div className={styles.ability}> <strong>Tradição:</strong> Predador Comum </div> </div>
                 <div className={styles.section}> <h2 className={styles.sectionTitle}>Benção dos Valar</h2> <div className={styles.ability}> <strong>Valar:</strong> Manwë </div> <div className={styles.ability}> <strong>Benção:</strong> Águias Gigantes </div> </div>
                 <div className={styles.section}> <h2 className={styles.sectionTitle}>Inventário</h2> <p>Peso: 0 / X</p> <div className={styles.item}> <p><strong>Nome:</strong> Item Exemplo</p> <p><strong>Descrição:</strong> Um item para demonstrar a estrutura.</p> <p><strong>Peso:</strong> 1 | <strong>Bônus:</strong> Nenhum</p> </div> <button className={styles.button}>Adicionar Item</button> </div>
             </div>
+
             {/* Coluna da Direita */}
             <div className={styles.column}>
                 <div className={`${styles.section} ${styles.diceRollerSection}`}>
                     <h2 className={styles.sectionTitle}>Dados</h2>
                     <div className={styles.notationInputWrapper}>
-                        <input type="text" value={notation} onChange={(e) => setNotation(e.target.value)} placeholder="Ex: 4d6d1+5" className={styles.notationInput} />
+                        <input type="text" value={notation} onChange={(e) => setNotation(e.target.value)} onKeyDown={handleKeyDown} placeholder="Ex: 3#d20+5" className={styles.notationInput} />
                         <button onClick={handleRoll} className={styles.rollButton}>Rolar</button>
                     </div>
                     <div className={styles.diceGrid}>
@@ -183,19 +126,50 @@ export default function Ficha() {
                         <div onClick={() => handleQuickRoll('1d2')} className={styles.diceButton}>D2</div>
                     </div>
                     <h3 className={styles.subTitle}>Resultado</h3>
+
+                    {/* ===== JSX DO RESULTADO ATUALIZADO AQUI ===== */}
                     <div className={styles.diceResult}>
                         {rollResult ? (
-                            <>
-                                <span className={styles.resultTotal}>{rollResult.total}</span>
-                                <span className={styles.resultOutput}>{rollResult.output}</span>
-                            </>
-                        ) : (<p>Faça uma rolagem...</p>)}
+                            rollResult.isMultiRoll ? (
+                                <>
+                                    <div className={styles.multiRollResult}>
+                                        {rollResult.output.map((res, i) => (
+                                            <span key={i} className={`${styles.multiRollTotal} ${res.critStatus === 'critSuccess' ? styles.critSuccess :
+                                                    res.critStatus === 'critFailure' ? styles.critFailure : ''
+                                                }`}>
+                                                {res.total}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <span className={styles.resultOutput}>
+                                        {/* Junta os detalhes de cada rolagem em uma linha */}
+                                        {rollResult.output.map(res => res.output.replace('Rolagem: ', '')).join('; ')}
+                                    </span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className={`${styles.resultTotal} ${rollResult.critStatus === 'critSuccess' ? styles.critSuccess :
+                                            rollResult.critStatus === 'critFailure' ? styles.critFailure : ''
+                                        }`}>
+                                        {rollResult.total}
+                                    </span>
+                                    <span className={styles.resultOutput}>{rollResult.output}</span>
+                                </>
+                            )
+                        ) : (
+                            <p>Faça uma rolagem...</p>
+                        )}
                     </div>
+
                     <h3 className={styles.subTitle}>Histórico</h3>
                     <ul className={styles.historyList}>
                         {rollHistory.map((roll, index) => (
                             <li key={index} className={styles.historyItem}>
-                                <span>{roll.output}</span>
+                                {roll.isMultiRoll ? (
+                                    <span>{`${notation} -> [${roll.output.map(r => r.total).join(', ')}]`}</span>
+                                ) : (
+                                    <span>{roll.output}</span>
+                                )}
                                 <strong>{roll.total}</strong>
                             </li>
                         ))}

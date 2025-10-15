@@ -1,0 +1,183 @@
+/* Layout Principal */
+.fichaGridContainer {
+    display: grid;
+    grid-template-columns: 300px 1fr 250px;
+    /* Colunas Esquerda, Meio, Direita */
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 1600px;
+    margin: 1rem auto;
+    font-family: sans-serif;
+    color: #e0e0e0;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Estilos Gerais dos Componentes */
+.section {
+    background-color: rgba(30, 25, 45, 0.8);
+    border: 1px solid #4a3f66;
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.sectionTitle {
+    color: #c9bfff;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #4a3f66;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.field:last-child {
+    margin-bottom: 0;
+}
+
+.field label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.field input {
+    padding: 0.7rem;
+    border-radius: 6px;
+    border: 1px solid #4a3f66;
+    background-color: #1a142b;
+    color: #e0e0e0;
+    font-size: 1rem;
+}
+
+.field input::placeholder {
+    color: #666;
+}
+
+.field input:disabled {
+    background-color: #2a243b;
+    cursor: not-allowed;
+}
+
+.button {
+    margin-top: 1rem;
+    padding: 0.7rem 1.2rem;
+    background-color: #8a6df2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.button:hover {
+    background-color: #7359cf;
+}
+
+.buttonSmall {
+    padding: 0.5rem 1rem;
+    background-color: #4a3f66;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.buttonSmall:hover {
+    background-color: #5d4f82;
+}
+
+/* Coluna da Esquerda */
+.infoGeral {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.profilePic {
+    grid-column: span 2;
+    width: 120px;
+    height: 120px;
+    background-color: #1a142b;
+    border: 2px solid #4a3f66;
+    border-radius: 50%;
+    margin: 0 auto 1rem auto;
+}
+
+.atributosGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.statusDisplay p {
+    background-color: #1a142b;
+    padding: 0.8rem;
+    border-radius: 6px;
+    margin: 0 0 0.5rem 0;
+}
+
+/* Coluna do Meio */
+.ability,
+.item {
+    background-color: #1a142b;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    border-left: 3px solid #8a6df2;
+}
+
+/* Coluna da Direita */
+.diceRollerSection {
+    position: sticky;
+    top: 1.5rem;
+}
+
+.diceGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.dicePlaceholder {
+    background-color: #4a3f66;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.dicePlaceholder:hover {
+    background-color: #8a6df2;
+}
+
+.diceResult {
+    margin-top: 1.5rem;
+    background-color: #1a142b;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 6px;
+    min-height: 50px;
+}
+

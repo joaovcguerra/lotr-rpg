@@ -1,6 +1,10 @@
 /* app/components/Ficha/ColunaEsquerda.module.css */
 
-/* Regras de estilo base que estavam faltando */
+/* =================================
+   ESTILOS RESTAURADOS E CORRIGIDOS
+   ================================= */
+
+/* Regras de estilo base que garantem o layout correto */
 .field {
     display: flex;
     flex-direction: column;
@@ -56,39 +60,8 @@
     background-color: #5d4f82;
 }
 
-/* ===== CORREÇÃO APLICADA AQUI ===== */
-.selectWrapper {
-    position: relative;
-}
-
-.selectInput {
-    /* Estilos copiados dos outros inputs para consistência */
-    width: 100%;
-    padding: 0.7rem;
-    border-radius: 6px;
-    border: 1px solid #4a3f66;
-    background-color: #1a142b;
-    color: #e0e0e0;
-    font-size: 1rem;
-    /* Remove a aparência padrão do navegador */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.selectWrapper::after {
-    content: '▼';
-    font-size: 1rem;
-    color: #aaa;
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    /* Garante que a seta não bloqueie o clique */
-}
-
-.classLevelFields {
+/* Estilo para a linha Raça/Nível */
+.raceLevelFields {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 1rem;
@@ -96,10 +69,28 @@
     margin-bottom: 1rem;
 }
 
-.classLevelFields>.field {
+.raceLevelFields>.field {
     margin-bottom: 0;
 }
 
+/* Estilo para Classe / Subclasse */
+.classSubclassFields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+}
+
+.classSubclassFields>.field {
+    margin-bottom: 0;
+}
+
+.classSubclassFields>.field input {
+    width: 100%;
+}
+
+/* Estilo para a linha Idade/Altura */
 .ageHeightFields {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -119,6 +110,34 @@
 .levelInput {
     width: 70px;
     text-align: center;
+}
+
+.selectWrapper {
+    position: relative;
+}
+
+.selectInput {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 6px;
+    border: 1px solid #4a3f66;
+    background-color: #1a142b;
+    color: #e0e0e0;
+    font-size: 1rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.selectWrapper::after {
+    content: '▼';
+    font-size: 1rem;
+    color: #aaa;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 
 /* Estilos de Status */
@@ -266,4 +285,41 @@
     padding: 0.8rem;
     border-radius: 6px;
     margin: 0 0 0.5rem 0;
+}
+
+.fieldWithIcon {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.flexGrow {
+    flex-grow: 1;
+}
+
+.infoButton {
+    background: #fff;
+    color: #1e192d;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-bottom: 5px;
+    /* Alinha com a altura do input */
+}
+
+.infoButton:disabled {
+    background: #4a3f66;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.infoButton:hover:not(:disabled) {
+    background: #c9bfff;
 }

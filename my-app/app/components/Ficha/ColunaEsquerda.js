@@ -1,10 +1,14 @@
 // app/components/Ficha/ColunaEsquerda.js
 'use client';
 
+import { FaInfoCircle } from 'react-icons/fa';
+
 export default function ColunaEsquerda({
     styles, hp, setHp, mana, setMana, danoValue, setDanoValue, curaValue, setCuraValue,
     custoValue, setCustoValue, regenValue, setRegenValue, applyHpChange, applyManaChange, handleMaxStatChange,
-    races, selectedRace, handleRaceChange
+    races, selectedRace, handleRaceChange, classes, selectedClass, handleClassChange,
+    availableSubclasses, selectedSubclass, handleSubclassChange, oficios, selectedOficio,
+    handleOficioChange, openOficioModal
 }) {
     return (
         <div className={styles.column}>
@@ -17,26 +21,54 @@ export default function ColunaEsquerda({
 
                 <div className={styles.field}><label>Nome:</label><input type="text" placeholder="Oberon" /></div>
 
-                <div className={styles.field}>
-                    <label>Raça:</label>
-                    <div className={styles.selectWrapper}>
-                        {/* ===== CORREÇÃO APLICADA AQUI ===== */}
-                        <select className={styles.selectInput} value={selectedRace} onChange={handleRaceChange}>
-                            <option value="">Selecione uma raça...</option>
-                            {races.map(race => (
-                                <option key={race.nome} value={race.nome}>{race.nome}</option>
-                            ))}
-                        </select>
+                <div className={styles.raceLevelFields}>
+                    <div className={styles.field}>
+                        <label>Raça:</label>
+                        <div className={styles.selectWrapper}>
+                            <select className={styles.selectInput} value={selectedRace} onChange={handleRaceChange}>
+                                <option value="">Selecione uma raça...</option>
+                                {races.map(race => (<option key={race.nome} value={race.nome}>{race.nome}</option>))}
+                            </select>
+                        </div>
                     </div>
-                </div>
-
-                <div className={styles.classLevelFields}>
-                    <div className={styles.field}><label>Classe:</label><input type="text" /></div>
                     <div className={styles.field}><label>Nível:</label><input type="text" inputMode="numeric" className={styles.levelInput} maxLength="2" /></div>
                 </div>
 
-                <div className={styles.field}><label>Caminho:</label><input type="text" /></div>
-                <div className={styles.field}><label>Ofício:</label><input type="text" /></div>
+                <div className={styles.classSubclassFields}>
+                    <div className={styles.field}>
+                        <label>Classe:</label>
+                        <div className={styles.selectWrapper}>
+                            <select className={styles.selectInput} value={selectedClass} onChange={handleClassChange}>
+                                <option value="">Selecione uma classe...</option>
+                                {classes.map(c => (<option key={c.nome} value={c.nome}>{c.nome}</option>))}
+                            </select>
+                        </div>
+                    </div>
+                    <div className={styles.field}>
+                        <label>Subclasse:</label>
+                        <div className={styles.selectWrapper}>
+                            <select className={styles.selectInput} value={selectedSubclass} onChange={handleSubclassChange} disabled={!selectedClass}>
+                                <option value="">Selecione uma subclasse...</option>
+                                {availableSubclasses.map(sc => (<option key={sc.nome} value={sc.nome}>{sc.nome}</option>))}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={styles.field}>
+                    <label>Ofício:</label>
+                    <div className={styles.fieldWithIcon}>
+                        <div className={`${styles.selectWrapper} ${styles.flexGrow}`}>
+                            <select className={styles.selectInput} value={selectedOficio} onChange={handleOficioChange}>
+                                <option value="">Selecione um ofício...</option>
+                                {oficios.map(oficio => (<option key={oficio.nome} value={oficio.nome}>{oficio.nome}</option>))}
+                            </select>
+                        </div>
+                        <button className={styles.infoButton} onClick={openOficioModal} disabled={!selectedOficio} title="Ver detalhes do ofício">
+                            <FaInfoCircle />
+                        </button>
+                    </div>
+                </div>
 
                 <div className={styles.ageHeightFields}>
                     <div className={styles.field}><label>Idade:</label><input type="text" /></div>

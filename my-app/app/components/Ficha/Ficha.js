@@ -3,21 +3,23 @@
 
 import { useState, useMemo } from 'react';
 import { rollCustomDice } from '../../utils/diceParser.js';
-import { races, valar } from '../../utils/rpgData.js';
+import { races, valar, classes, oficios } from '../../utils/rpgData.js';
 import ColunaEsquerda from './ColunaEsquerda';
 import ColunaMeio from './ColunaMeio';
 import ColunaDireita from './ColunaDireita';
 import DescricaoModal from './DescricaoModal';
+import OficioInfoModal from './OficioInfoModal';
 
 // Importando todos os módulos CSS
 import mainStyles from './Ficha.module.css';
 import leftStyles from './ColunaEsquerda.module.css';
 import middleStyles from './ColunaMeio.module.css';
 import rightStyles from './ColunaDireita.module.css';
-import modalStyles from './DescricaoModal.module.css';
+import descModalStyles from './DescricaoModal.module.css';
+import oficioModalStyles from './OficioInfoModal.module.css';
 
 // Combinando todos os estilos em um único objeto
-const styles = { ...mainStyles, ...leftStyles, ...middleStyles, ...rightStyles, ...modalStyles };
+const styles = { ...mainStyles, ...leftStyles, ...middleStyles, ...rightStyles, ...descModalStyles, ...oficioModalStyles };
 
 const getModifier = (value) => {
     const num = parseInt(value, 10);
@@ -51,6 +53,10 @@ export default function Ficha() {
     const [editingItemId, setEditingItemId] = useState(null);
     const [selectedRace, setSelectedRace] = useState('');
     const [selectedValar, setSelectedValar] = useState('');
+    const [selectedClass, setSelectedClass] = useState('');
+    const [selectedSubclass, setSelectedSubclass] = useState('');
+    const [selectedOficio, setSelectedOficio] = useState('');
+    const [isOficioModalOpen, setIsOficioModalOpen] = useState(false);
 
     const handleAtributoChange = (e) => {
         const { name, value } = e.target;
@@ -109,17 +115,24 @@ export default function Ficha() {
         handleItemChange(itemId, 'descricao', newDescription);
     };
 
-    const handleRaceChange = (e) => {
-        setSelectedRace(e.target.value);
+    const handleRaceChange = (e) => setSelectedRace(e.target.value);
+    const handleValarChange = (e) => setSelectedValar(e.target.value);
+    const handleClassChange = (e) => {
+        setSelectedClass(e.target.value);
+        setSelectedSubclass('');
     };
-
-    const handleValarChange = (e) => {
-        setSelectedValar(e.target.value);
-    };
+    const handleSubclassChange = (e) => setSelectedSubclass(e.target.value);
+    const handleOficioChange = (e) => setSelectedOficio(e.target.value);
+    const openOficioModal = () => { if (selectedOficio) setIsOficioModalOpen(true); };
+    const closeOficioModal = () => setIsOficioModalOpen(false);
 
     const itemToEdit = editingItemId ? inventory.find(item => item.id === editingItemId) : null;
     const raceData = selectedRace ? races.find(r => r.nome === selectedRace) : null;
     const valarData = selectedValar ? valar.find(v => v.nome === selectedValar) : null;
+    const classData = selectedClass ? classes.find(c => c.nome === selectedClass) : null;
+    const availableSubclasses = classData ? classData.subclasses : [];
+    const subclassData = selectedSubclass ? availableSubclasses.find(sc => sc.nome === selectedSubclass) : null;
+    const oficioData = selectedOficio ? oficios.find(o => o.nome === selectedOficio) : null;
 
     return (
         <div className={styles.fichaGridContainer}>
@@ -137,6 +150,16 @@ export default function Ficha() {
                 races={races}
                 selectedRace={selectedRace}
                 handleRaceChange={handleRaceChange}
+                classes={classes}
+                selectedClass={selectedClass}
+                handleClassChange={handleClassChange}
+                availableSubclasses={availableSubclasses}
+                selectedSubclass={selectedSubclass}
+                handleSubclassChange={handleSubclassChange}
+                oficios={oficios}
+                selectedOficio={selectedOficio}
+                handleOficioChange={handleOficioChange}
+                openOficioModal={openOficioModal}
             />
             <ColunaMeio
                 styles={styles}
@@ -151,6 +174,7 @@ export default function Ficha() {
                 selectedValar={selectedValar}
                 handleValarChange={handleValarChange}
                 valarData={valarData}
+                subclassData={subclassData}
             />
             <ColunaDireita
                 styles={styles}
@@ -167,6 +191,13 @@ export default function Ficha() {
                     item={itemToEdit}
                     onSave={saveItemDescription}
                     onClose={closeDescriptionModal}
+                />
+            )}
+            {isOficioModalOpen && oficioData && (
+                <OficioInfoModal
+                    styles={styles}
+                    oficio={oficioData}
+                    onClose={closeOficioModal}
                 />
             )}
         </div>

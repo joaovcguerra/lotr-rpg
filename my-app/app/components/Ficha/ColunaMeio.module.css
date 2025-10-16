@@ -153,8 +153,6 @@
     margin-top: 1rem;
 }
 
-/* Adicione ao final de ColunaMeio.module.css */
-
 .valarSelection {
     display: flex;
     flex-direction: column;
@@ -165,4 +163,22 @@
     margin-top: 1rem;
     border-top: 1px solid #4a3f66;
     padding-top: 1.5rem;
+}
+
+.inventoryHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0.2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #4a3f66;
+}
+
+.statDisplay {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.limitExceeded {
+    color: #ef4444;
+    font-weight: bold;
 }

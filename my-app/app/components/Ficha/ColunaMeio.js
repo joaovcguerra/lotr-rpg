@@ -6,7 +6,8 @@ import { FaTrashAlt } from "react-icons/fa";
 export default function ColunaMeio({
     styles, activeTab, setActiveTab, inventory, addItemToInventory,
     removeItemFromInventory, handleItemChange, openDescriptionModal,
-    raceData, valar, selectedValar, handleValarChange, valarData
+    raceData, valar, selectedValar, handleValarChange, valarData,
+    subclassData
 }) {
     return (
         <div className={styles.column}>
@@ -21,34 +22,24 @@ export default function ColunaMeio({
                         <div>
                             {raceData ? (
                                 <>
-                                    {raceData.talentos.map(talento => (
-                                        <div key={talento.nome} className={styles.ability}>
-                                            <strong>Talento: {talento.nome}</strong>
-                                            <p className={styles.abilityDescription}>{talento.descricao}</p>
-                                        </div>
-                                    ))}
-                                    <div className={styles.ability}>
-                                        <strong>Mau Hábito: {raceData.mauHabito.nome}</strong>
-                                        <p className={styles.abilityDescription}>{raceData.mauHabito.descricao}</p>
-                                    </div>
-                                    <div className={styles.ability}>
-                                        <strong>Benção: {raceData.bencao.nome}</strong>
-                                        <p className={styles.abilityDescription}>{raceData.bencao.descricao}</p>
-                                    </div>
-                                    <div className={styles.ability}>
-                                        <strong>Maldição: {raceData.maldicao.nome}</strong>
-                                        <p className={styles.abilityDescription}>{raceData.maldicao.descricao}</p>
-                                    </div>
+                                    {raceData.talentos.map(talento => (<div key={talento.nome} className={styles.ability}><strong>Talento: {talento.nome}</strong><p className={styles.abilityDescription}>{talento.descricao}</p></div>))}
+                                    <div className={styles.ability}><strong>Mau Hábito: {raceData.mauHabito.nome}</strong><p className={styles.abilityDescription}>{raceData.mauHabito.descricao}</p></div>
+                                    <div className={styles.ability}><strong>Benção: {raceData.bencao.nome}</strong><p className={styles.abilityDescription}>{raceData.bencao.descricao}</p></div>
+                                    <div className={styles.ability}><strong>Maldição: {raceData.maldicao.nome}</strong><p className={styles.abilityDescription}>{raceData.maldicao.descricao}</p></div>
                                 </>
-                            ) : (
-                                <p className={styles.placeholderText}>Selecione uma raça para ver suas habilidades.</p>
-                            )}
+                            ) : (<p className={styles.placeholderText}>Selecione uma raça para ver suas habilidades.</p>)}
                         </div>
                     )}
                     {activeTab === 'classe' && (
                         <div>
-                            <div className={styles.ability}> <strong>Técnica:</strong> Tiro Profundo </div>
-                            <div className={styles.ability}> <strong>Tradição:</strong> Predador Comum </div>
+                            {subclassData ? (
+                                <>
+                                    <div className={styles.ability}><strong>Técnica: {subclassData.tecnica.nome}</strong><p className={styles.abilityDescription}>{subclassData.tecnica.descricao}</p></div>
+                                    <div className={styles.ability}><strong>Tradição: {subclassData.tradicao.nome}</strong><p className={styles.abilityDescription}>{subclassData.tradicao.descricao}</p></div>
+                                    <div className={styles.ability}><strong>Mal Hábito: {subclassData.mauHabito.nome}</strong><p className={styles.abilityDescription}>{subclassData.mauHabito.descricao}</p></div>
+                                    <div className={styles.ability}><strong>Prática</strong><p className={styles.abilityDescription}>{subclassData.pratica}</p></div>
+                                </>
+                            ) : (<p className={styles.placeholderText}>Selecione uma classe e subclasse para ver suas habilidades.</p>)}
                         </div>
                     )}
                     {activeTab === 'valar' && (
@@ -56,26 +47,14 @@ export default function ColunaMeio({
                             <div className={styles.selectWrapper}>
                                 <select className={styles.selectInput} value={selectedValar} onChange={handleValarChange}>
                                     <option value="">Selecione um Valar...</option>
-                                    {valar.map(v => (
-                                        <option key={v.nome} value={v.nome}>{v.nome}</option>
-                                    ))}
+                                    {valar.map(v => (<option key={v.nome} value={v.nome}>{v.nome}</option>))}
                                 </select>
                             </div>
-
                             {valarData && (
                                 <div className={styles.valarDetails}>
-                                    <div className={styles.ability}>
-                                        <strong>Benção: {valarData.bencao.nome}</strong>
-                                        <p className={styles.abilityDescription}>{valarData.bencao.descricao}</p>
-                                    </div>
-                                    <div className={styles.ability}>
-                                        <strong>Restrições</strong>
-                                        <p className={styles.abilityDescription}>{valarData.restricoes}</p>
-                                    </div>
-                                    <div className={styles.ability}>
-                                        <strong>Local de Adoração</strong>
-                                        <p className={styles.abilityDescription}>{valarData.localAdoracao}</p>
-                                    </div>
+                                    <div className={styles.ability}><strong>Benção: {valarData.bencao.nome}</strong><p className={styles.abilityDescription}>{valarData.bencao.descricao}</p></div>
+                                    <div className={styles.ability}><strong>Restrições</strong><p className={styles.abilityDescription}>{valarData.restricoes}</p></div>
+                                    <div className={styles.ability}><strong>Local de Adoração</strong><p className={styles.abilityDescription}>{valarData.localAdoracao}</p></div>
                                 </div>
                             )}
                         </div>
@@ -87,26 +66,14 @@ export default function ColunaMeio({
                 <p>Peso: 0 / X</p>
                 <div className={styles.inventoryWrapper}>
                     <table className={styles.inventoryTable}>
-                        <thead>
-                            <tr>
-                                <th>Nome do Item</th>
-                                <th>Dano/Efeito</th>
-                                <th>Qtd.</th>
-                                <th>Descrição</th>
-                                <th></th>
-                            </tr>
-                        </thead>
+                        <thead><tr><th>Nome do Item</th><th>Dano/Efeito</th><th>Qtd.</th><th>Descrição</th><th></th></tr></thead>
                         <tbody>
                             {inventory.map(item => (
                                 <tr key={item.id}>
                                     <td><input type="text" value={item.nome} onChange={(e) => handleItemChange(item.id, 'nome', e.target.value)} /></td>
                                     <td><input type="text" value={item.danoEfeito} onChange={(e) => handleItemChange(item.id, 'danoEfeito', e.target.value)} /></td>
                                     <td><input type="text" inputMode="numeric" value={item.quantidade} onChange={(e) => handleItemChange(item.id, 'quantidade', e.target.value)} className={styles.quantityInput} /></td>
-                                    <td>
-                                        <button className={styles.openDescriptionButton} onClick={() => openDescriptionModal(item.id)}>
-                                            Abrir Descrição
-                                        </button>
-                                    </td>
+                                    <td><button className={styles.openDescriptionButton} onClick={() => openDescriptionModal(item.id)}>Abrir Descrição</button></td>
                                     <td><button className={styles.deleteItemButton} onClick={() => removeItemFromInventory(item.id)}><FaTrashAlt /></button></td>
                                 </tr>
                             ))}

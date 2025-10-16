@@ -3,17 +3,18 @@
 
 import { useState, useMemo } from 'react';
 import { rollCustomDice } from '../../utils/diceParser.js';
+import { races, valar } from '../../utils/rpgData.js';
 import ColunaEsquerda from './ColunaEsquerda';
 import ColunaMeio from './ColunaMeio';
 import ColunaDireita from './ColunaDireita';
-import DescricaoModal from './DescricaoModal'; // Importa o novo componente
+import DescricaoModal from './DescricaoModal';
 
 // Importando todos os módulos CSS
 import mainStyles from './Ficha.module.css';
 import leftStyles from './ColunaEsquerda.module.css';
 import middleStyles from './ColunaMeio.module.css';
 import rightStyles from './ColunaDireita.module.css';
-import modalStyles from './DescricaoModal.module.css'; // Importa os estilos do modal
+import modalStyles from './DescricaoModal.module.css';
 
 // Combinando todos os estilos em um único objeto
 const styles = { ...mainStyles, ...leftStyles, ...middleStyles, ...rightStyles, ...modalStyles };
@@ -48,6 +49,8 @@ export default function Ficha() {
         { id: 1, nome: 'Item Exemplo', danoEfeito: 'Nenhum', quantidade: 1, descricao: 'Um item para demonstrar a estrutura.' },
     ]);
     const [editingItemId, setEditingItemId] = useState(null);
+    const [selectedRace, setSelectedRace] = useState('');
+    const [selectedValar, setSelectedValar] = useState('');
 
     const handleAtributoChange = (e) => {
         const { name, value } = e.target;
@@ -106,7 +109,17 @@ export default function Ficha() {
         handleItemChange(itemId, 'descricao', newDescription);
     };
 
+    const handleRaceChange = (e) => {
+        setSelectedRace(e.target.value);
+    };
+
+    const handleValarChange = (e) => {
+        setSelectedValar(e.target.value);
+    };
+
     const itemToEdit = editingItemId ? inventory.find(item => item.id === editingItemId) : null;
+    const raceData = selectedRace ? races.find(r => r.nome === selectedRace) : null;
+    const valarData = selectedValar ? valar.find(v => v.nome === selectedValar) : null;
 
     return (
         <div className={styles.fichaGridContainer}>
@@ -121,6 +134,9 @@ export default function Ficha() {
                 applyHpChange={applyHpChange}
                 applyManaChange={applyManaChange}
                 handleMaxStatChange={handleMaxStatChange}
+                races={races}
+                selectedRace={selectedRace}
+                handleRaceChange={handleRaceChange}
             />
             <ColunaMeio
                 styles={styles}
@@ -130,6 +146,11 @@ export default function Ficha() {
                 removeItemFromInventory={removeItemFromInventory}
                 handleItemChange={handleItemChange}
                 openDescriptionModal={openDescriptionModal}
+                raceData={raceData}
+                valar={valar}
+                selectedValar={selectedValar}
+                handleValarChange={handleValarChange}
+                valarData={valarData}
             />
             <ColunaDireita
                 styles={styles}

@@ -3,7 +3,8 @@
 
 export default function ColunaEsquerda({
     styles, hp, setHp, mana, setMana, danoValue, setDanoValue, curaValue, setCuraValue,
-    custoValue, setCustoValue, regenValue, setRegenValue, applyHpChange, applyManaChange, handleMaxStatChange
+    custoValue, setCustoValue, regenValue, setRegenValue, applyHpChange, applyManaChange, handleMaxStatChange,
+    races, selectedRace, handleRaceChange
 }) {
     return (
         <div className={styles.column}>
@@ -15,11 +16,22 @@ export default function ColunaEsquerda({
                 </div>
 
                 <div className={styles.field}><label>Nome:</label><input type="text" placeholder="Oberon" /></div>
-                <div className={styles.field}><label>Raça:</label><input type="text" /></div>
+
+                <div className={styles.field}>
+                    <label>Raça:</label>
+                    <div className={styles.selectWrapper}>
+                        {/* ===== CORREÇÃO APLICADA AQUI ===== */}
+                        <select className={styles.selectInput} value={selectedRace} onChange={handleRaceChange}>
+                            <option value="">Selecione uma raça...</option>
+                            {races.map(race => (
+                                <option key={race.nome} value={race.nome}>{race.nome}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
 
                 <div className={styles.classLevelFields}>
                     <div className={styles.field}><label>Classe:</label><input type="text" /></div>
-                    {/* ===== CORREÇÃO APLICADA AQUI ===== */}
                     <div className={styles.field}><label>Nível:</label><input type="text" inputMode="numeric" className={styles.levelInput} maxLength="2" /></div>
                 </div>
 
@@ -39,7 +51,6 @@ export default function ColunaEsquerda({
                     <div className={styles.statusBar}>
                         <div className={`${styles.statusBarFill} ${styles.hpBar}`} style={{ width: `${(hp.current / hp.max) * 100}%` }}></div>
                         <div className={styles.statusBarValues}>
-                            {/* ===== CORREÇÃO APLICADA AQUI ===== */}
                             <input type="text" inputMode="numeric" value={hp.current} onChange={(e) => setHp({ ...hp, current: Math.min(parseInt(e.target.value) || 0, hp.max) })} className={styles.maxStatInput} />
                             <span>|</span>
                             <input type="text" inputMode="numeric" value={hp.max} onChange={(e) => handleMaxStatChange('hp', e.target.value)} className={styles.maxStatInput} />
@@ -57,7 +68,6 @@ export default function ColunaEsquerda({
                     <div className={styles.statusBar}>
                         <div className={`${styles.statusBarFill} ${styles.manaBar}`} style={{ width: `${(mana.current / mana.max) * 100}%` }}></div>
                         <div className={styles.statusBarValues}>
-                            {/* ===== CORREÇÃO APLICADA AQUI ===== */}
                             <input type="text" inputMode="numeric" value={mana.current} onChange={(e) => setMana({ ...mana, current: Math.min(parseInt(e.target.value) || 0, mana.max) })} className={styles.maxStatInput} />
                             <span>|</span>
                             <input type="text" inputMode="numeric" value={mana.max} onChange={(e) => handleMaxStatChange('mana', e.target.value)} className={styles.maxStatInput} />

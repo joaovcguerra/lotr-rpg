@@ -137,3 +137,32 @@
 .openDescriptionButton:hover {
     background-color: #5d4f82;
 }
+
+/* Adicione ao final de ColunaMeio.module.css */
+
+.abilityDescription {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.placeholderText {
+    color: #aaa;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Adicione ao final de ColunaMeio.module.css */
+
+.valarSelection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.valarDetails {
+    margin-top: 1rem;
+    border-top: 1px solid #4a3f66;
+    padding-top: 1.5rem;
+}

@@ -56,6 +56,38 @@
     background-color: #5d4f82;
 }
 
+/* ===== CORREÇÃO APLICADA AQUI ===== */
+.selectWrapper {
+    position: relative;
+}
+
+.selectInput {
+    /* Estilos copiados dos outros inputs para consistência */
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 6px;
+    border: 1px solid #4a3f66;
+    background-color: #1a142b;
+    color: #e0e0e0;
+    font-size: 1rem;
+    /* Remove a aparência padrão do navegador */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.selectWrapper::after {
+    content: '▼';
+    font-size: 1rem;
+    color: #aaa;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    /* Garante que a seta não bloqueie o clique */
+}
+
 .classLevelFields {
     display: grid;
     grid-template-columns: 1fr auto;

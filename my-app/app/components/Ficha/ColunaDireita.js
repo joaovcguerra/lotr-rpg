@@ -1,4 +1,3 @@
-// app/components/Ficha/ColunaDireita.js
 'use client';
 
 import { FaTrashAlt, FaDiceD20, FaCube, FaDiceD6, FaCaretUp, FaCoins } from "react-icons/fa";
@@ -15,7 +14,6 @@ export default function ColunaDireita({
                     {Object.keys(atributos).map((attrName) => (
                         <div key={attrName} className={styles.atributoBox}>
                             <label className={styles.atributoLabel}>{attrName.toUpperCase()}</label>
-                            {/* ===== CORREÇÃO APLICADA AQUI ===== */}
                             <input
                                 type="text"
                                 inputMode="numeric"
@@ -30,7 +28,6 @@ export default function ColunaDireita({
                 </div>
                 <div className={styles.atributoBox} style={{ marginTop: '1.5rem' }}>
                     <label className={styles.atributoLabel}>FORÇA DE VONTADE</label>
-                    {/* ===== CORREÇÃO APLICADA AQUI ===== */}
                     <input
                         type="text"
                         inputMode="numeric"

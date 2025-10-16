@@ -1,4 +1,3 @@
-// app/components/Ficha/ColunaEsquerda.js
 'use client';
 
 import { FaInfoCircle } from 'react-icons/fa';

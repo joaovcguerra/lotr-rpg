@@ -1,4 +1,3 @@
-// app/components/Ficha/ColunaMeio.js
 'use client';
 
 import { FaTrashAlt } from "react-icons/fa";
@@ -7,7 +6,7 @@ export default function ColunaMeio({
     styles, activeTab, setActiveTab, inventory, addItemToInventory,
     removeItemFromInventory, handleItemChange, openDescriptionModal,
     raceData, valar, selectedValar, handleValarChange, valarData,
-    subclassData
+    subclassData, maxSpace, currentSpace, maxWeight, currentWeight, penalty
 }) {
     return (
         <div className={styles.column}>
@@ -63,7 +62,13 @@ export default function ColunaMeio({
             </div>
             <div className={styles.section}>
                 <h2 className={styles.sectionTitle}>Inventário</h2>
-                <p>Peso: 0 / X</p>
+                <div className={styles.inventoryHeader}>
+                    <p className={styles.statDisplay}>
+                        Espaço: {currentSpace} / <span className={currentSpace > maxSpace ? styles.limitExceeded : ''}>{maxSpace}</span>
+                    </p>
+                    <p className={styles.statDisplay}>Peso: {currentWeight.toFixed(1)} / {maxWeight.toFixed(1)}</p>
+                    <p className={styles.statDisplay}>Penalidade: <span className={penalty !== "Nenhuma" ? styles.limitExceeded : ''}>{penalty}</span></p>
+                </div>
                 <div className={styles.inventoryWrapper}>
                     <table className={styles.inventoryTable}>
                         <thead><tr><th>Nome do Item</th><th>Dano/Efeito</th><th>Qtd.</th><th>Descrição</th><th></th></tr></thead>
@@ -73,7 +78,11 @@ export default function ColunaMeio({
                                     <td><input type="text" value={item.nome} onChange={(e) => handleItemChange(item.id, 'nome', e.target.value)} /></td>
                                     <td><input type="text" value={item.danoEfeito} onChange={(e) => handleItemChange(item.id, 'danoEfeito', e.target.value)} /></td>
                                     <td><input type="text" inputMode="numeric" value={item.quantidade} onChange={(e) => handleItemChange(item.id, 'quantidade', e.target.value)} className={styles.quantityInput} /></td>
-                                    <td><button className={styles.openDescriptionButton} onClick={() => openDescriptionModal(item.id)}>Abrir Descrição</button></td>
+                                    <td>
+                                        <button className={styles.openDescriptionButton} onClick={() => openDescriptionModal(item.id)}>
+                                            Abrir Detalhes
+                                        </button>
+                                    </td>
                                     <td><button className={styles.deleteItemButton} onClick={() => removeItemFromInventory(item.id)}><FaTrashAlt /></button></td>
                                 </tr>
                             ))}

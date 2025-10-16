@@ -1,5 +1,3 @@
-/* app/components/Ficha/ColunaMeio.module.css */
-
 .tabNav {
     display: flex;
     justify-content: space-around;
@@ -119,7 +117,6 @@
     -moz-appearance: textfield;
     appearance: none;
     margin: 0;
-    /* Necessário para alguns navegadores */
 }
 
 .openDescriptionButton {
@@ -137,8 +134,6 @@
 .openDescriptionButton:hover {
     background-color: #5d4f82;
 }
-
-/* Adicione ao final de ColunaMeio.module.css */
 
 .abilityDescription {
     color: #aaa;

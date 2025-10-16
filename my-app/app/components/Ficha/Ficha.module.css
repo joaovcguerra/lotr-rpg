@@ -1,5 +1,3 @@
-/* app/components/Ficha/Ficha.module.css */
-
 .fichaGridContainer {
     display: grid;
     grid-template-columns: 1fr;

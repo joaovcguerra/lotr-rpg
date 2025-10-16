@@ -1,4 +1,3 @@
-// app/components/Ficha/OficioInfoModal.js
 'use client';
 
 export default function OficioInfoModal({ styles, oficio, onClose }) {

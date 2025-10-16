@@ -1,4 +1,3 @@
-// app/components/Ficha/Ficha.js
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -10,7 +9,6 @@ import ColunaDireita from './ColunaDireita';
 import DescricaoModal from './DescricaoModal';
 import OficioInfoModal from './OficioInfoModal';
 
-// Importando todos os módulos CSS
 import mainStyles from './Ficha.module.css';
 import leftStyles from './ColunaEsquerda.module.css';
 import middleStyles from './ColunaMeio.module.css';
@@ -18,7 +16,6 @@ import rightStyles from './ColunaDireita.module.css';
 import descModalStyles from './DescricaoModal.module.css';
 import oficioModalStyles from './OficioInfoModal.module.css';
 
-// Combinando todos os estilos em um único objeto
 const styles = { ...mainStyles, ...leftStyles, ...middleStyles, ...rightStyles, ...descModalStyles, ...oficioModalStyles };
 
 const getModifier = (value) => {
@@ -48,7 +45,7 @@ export default function Ficha() {
     const [rollHistory, setRollHistory] = useState([]);
     const [activeTab, setActiveTab] = useState('raca');
     const [inventory, setInventory] = useState([
-        { id: 1, nome: 'Item Exemplo', danoEfeito: 'Nenhum', quantidade: 1, descricao: 'Um item para demonstrar a estrutura.' },
+        { id: 1, nome: 'Item Exemplo', danoEfeito: 'Nenhum', quantidade: 1, descricao: 'Um item para demonstrar a estrutura.', espaco: 1, peso: 0.5 },
     ]);
     const [editingItemId, setEditingItemId] = useState(null);
     const [selectedRace, setSelectedRace] = useState('');
@@ -57,6 +54,61 @@ export default function Ficha() {
     const [selectedSubclass, setSelectedSubclass] = useState('');
     const [selectedOficio, setSelectedOficio] = useState('');
     const [isOficioModalOpen, setIsOficioModalOpen] = useState(false);
+
+    // Lógicas de cálculo para o inventário
+    const conBonus = useMemo(() => Number(getModifier(atributos.constituicao)) || 0, [atributos.constituicao]);
+    const maxWeight = useMemo(() => 1 + (conBonus * 2), [conBonus]);
+    const maxSpace = useMemo(() => {
+        const baseSpace = 1;
+        const bonusSpace = inventory.reduce((total, item) => {
+            const spaceValue = String(item.espaco);
+            if (spaceValue.startsWith('+')) {
+                return total + (Number(spaceValue.substring(1)) || 0);
+            }
+            return total;
+        }, 0);
+        return baseSpace + bonusSpace;
+    }, [inventory]);
+
+    const currentSpace = useMemo(() => {
+        return inventory.reduce((total, item) => {
+            const spaceValue = String(item.espaco);
+            if (!spaceValue.startsWith('+')) {
+                return total + ((Number(spaceValue) || 0) * (Number(item.quantidade) || 0));
+            }
+            return total;
+        }, 0);
+    }, [inventory]);
+
+    // ===== CORREÇÃO APLICADA AQUI =====
+    const currentWeight = useMemo(() => {
+        let weightFromItems = 0;
+        let zeroWeightItemCount = 0;
+
+        inventory.forEach(item => {
+            const weight = Number(item.peso) || 0;
+            const quantity = Number(item.quantidade) || 0;
+
+            if (weight > 0) {
+                weightFromItems += weight * quantity;
+            } else {
+                zeroWeightItemCount += quantity;
+            }
+        });
+
+        const weightFromZeroItems = Math.floor(zeroWeightItemCount / 3);
+
+        return weightFromItems + weightFromZeroItems;
+    }, [inventory]);
+
+    const penalty = useMemo(() => {
+        const overweight = Math.floor(currentWeight - maxWeight);
+        if (overweight > 0) {
+            return `-${overweight} DES | -${overweight * 2} Iniciativa`;
+        }
+        return "Nenhuma";
+    }, [currentWeight, maxWeight]);
+
 
     const handleAtributoChange = (e) => {
         const { name, value } = e.target;
@@ -104,15 +156,24 @@ export default function Ficha() {
         }
     };
 
-    const addItemToInventory = () => setInventory([...inventory, { id: Date.now(), nome: '', danoEfeito: '', quantidade: 1, descricao: '' }]);
+    const addItemToInventory = () => {
+        const newItem = {
+            id: Date.now(), nome: '', danoEfeito: '', quantidade: 1, descricao: '',
+            espaco: 1, peso: 0
+        };
+        setInventory([...inventory, newItem]);
+    };
+
     const removeItemFromInventory = (id) => setInventory(inventory.filter(item => item.id !== id));
     const handleItemChange = (id, field, value) => setInventory(inventory.map(item => item.id === id ? { ...item, [field]: value } : item));
 
     const openDescriptionModal = (itemId) => setEditingItemId(itemId);
     const closeDescriptionModal = () => setEditingItemId(null);
 
-    const saveItemDescription = (itemId, newDescription) => {
-        handleItemChange(itemId, 'descricao', newDescription);
+    const saveItemDetails = (itemId, updatedDetails) => {
+        setInventory(inventory.map(item =>
+            item.id === itemId ? { ...item, ...updatedDetails } : item
+        ));
     };
 
     const handleRaceChange = (e) => setSelectedRace(e.target.value);
@@ -175,6 +236,11 @@ export default function Ficha() {
                 handleValarChange={handleValarChange}
                 valarData={valarData}
                 subclassData={subclassData}
+                maxSpace={maxSpace}
+                currentSpace={currentSpace}
+                maxWeight={maxWeight}
+                currentWeight={currentWeight}
+                penalty={penalty}
             />
             <ColunaDireita
                 styles={styles}
@@ -189,7 +255,7 @@ export default function Ficha() {
                 <DescricaoModal
                     styles={styles}
                     item={itemToEdit}
-                    onSave={saveItemDescription}
+                    onSave={saveItemDetails}
                     onClose={closeDescriptionModal}
                 />
             )}

@@ -1,5 +1,3 @@
-// app/utils/diceParser.js
-
 /**
  * Interpreta uma notação de dado complexa e retorna o resultado.
  * @param {string} notation - A string da notação a ser rolada.
@@ -9,7 +7,7 @@ export function rollCustomDice(notation) {
     const originalNotation = notation.trim();
     let critStatus = 'normal';
 
-    // Pré-processamento para notação X#A (continua igual)
+    // Pré-processamento para notação X#A
     const multiRollMatch = originalNotation.match(/^(\d+)#(.+)/);
     if (multiRollMatch) {
         const count = parseInt(multiRollMatch[1]);
@@ -28,7 +26,7 @@ export function rollCustomDice(notation) {
         };
     }
 
-    // Pré-processamento para contagem de sucesso (continua igual)
+    // Pré-processamento para contagem de sucesso
     const successCountMatch = originalNotation.match(/(.*)(>>|<<)(\d+)/);
     if (successCountMatch) {
         const dicePart = successCountMatch[1];
@@ -67,7 +65,7 @@ export function rollCustomDice(notation) {
         const sides = parseInt(match[2]);
         const explode = match[3];
         const keepDrop = match[4];
-        const perDieModifierString = match[5]; // Nova captura! Ex: "++2"
+        const perDieModifierString = match[5]; // Nova captura Ex: "++2"
 
         if (numDice === 0 || sides === 0) continue;
 
@@ -90,7 +88,6 @@ export function rollCustomDice(notation) {
             if (rolls[0] === 1) critStatus = 'critFailure';
         }
 
-        // ===== LÓGICA DO MODIFICADOR POR DADO ADICIONADA AQUI =====
         let modifiedRolls = [...rolls];
         if (perDieModifierString) {
             const perDieOperator = perDieModifierString.substring(0, 2); // "++" ou "--"
@@ -122,7 +119,7 @@ export function rollCustomDice(notation) {
         }
 
         const sum = resultRolls.reduce((s, r) => s + r, 0);
-        // A saída mostra os dados originais para clareza
+        // A saída mostra os dados originais
         const detailedRoll = `${fullMatch}[${rolls.join(', ')}]`;
 
         calculationString = calculationString.replace(fullMatch, sum);

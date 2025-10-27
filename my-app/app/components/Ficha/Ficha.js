@@ -1,3 +1,4 @@
+// app/components/Ficha/Ficha.js
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -9,6 +10,7 @@ import ColunaDireita from './ColunaDireita';
 import DescricaoModal from './DescricaoModal';
 import OficioInfoModal from './OficioInfoModal';
 
+// Importando todos os módulos CSS
 import mainStyles from './Ficha.module.css';
 import leftStyles from './ColunaEsquerda.module.css';
 import middleStyles from './ColunaMeio.module.css';
@@ -16,6 +18,7 @@ import rightStyles from './ColunaDireita.module.css';
 import descModalStyles from './DescricaoModal.module.css';
 import oficioModalStyles from './OficioInfoModal.module.css';
 
+// Combinando todos os estilos em um único objeto
 const styles = { ...mainStyles, ...leftStyles, ...middleStyles, ...rightStyles, ...descModalStyles, ...oficioModalStyles };
 
 const getModifier = (value) => {
@@ -54,6 +57,7 @@ export default function Ficha() {
     const [selectedSubclass, setSelectedSubclass] = useState('');
     const [selectedOficio, setSelectedOficio] = useState('');
     const [isOficioModalOpen, setIsOficioModalOpen] = useState(false);
+    const [level, setLevel] = useState(1); // ===== NOVO STATE PARA O NÍVEL =====
 
     // Lógicas de cálculo para o inventário
     const conBonus = useMemo(() => Number(getModifier(atributos.constituicao)) || 0, [atributos.constituicao]);
@@ -80,24 +84,19 @@ export default function Ficha() {
         }, 0);
     }, [inventory]);
 
-    // ===== CORREÇÃO APLICADA AQUI =====
     const currentWeight = useMemo(() => {
         let weightFromItems = 0;
         let zeroWeightItemCount = 0;
-
         inventory.forEach(item => {
             const weight = Number(item.peso) || 0;
             const quantity = Number(item.quantidade) || 0;
-
             if (weight > 0) {
                 weightFromItems += weight * quantity;
             } else {
                 zeroWeightItemCount += quantity;
             }
         });
-
         const weightFromZeroItems = Math.floor(zeroWeightItemCount / 3);
-
         return weightFromItems + weightFromZeroItems;
     }, [inventory]);
 
@@ -187,6 +186,11 @@ export default function Ficha() {
     const openOficioModal = () => { if (selectedOficio) setIsOficioModalOpen(true); };
     const closeOficioModal = () => setIsOficioModalOpen(false);
 
+    // ===== NOVA FUNÇÃO AQUI =====
+    const handleLevelChange = (e) => {
+        setLevel(e.target.value);
+    };
+
     const itemToEdit = editingItemId ? inventory.find(item => item.id === editingItemId) : null;
     const raceData = selectedRace ? races.find(r => r.nome === selectedRace) : null;
     const valarData = selectedValar ? valar.find(v => v.nome === selectedValar) : null;
@@ -221,6 +225,8 @@ export default function Ficha() {
                 selectedOficio={selectedOficio}
                 handleOficioChange={handleOficioChange}
                 openOficioModal={openOficioModal}
+                level={level} // Passa o nível
+                handleLevelChange={handleLevelChange} // Passa a função de mudança
             />
             <ColunaMeio
                 styles={styles}
@@ -241,6 +247,7 @@ export default function Ficha() {
                 maxWeight={maxWeight}
                 currentWeight={currentWeight}
                 penalty={penalty}
+                level={level} // Passa o nível
             />
             <ColunaDireita
                 styles={styles}

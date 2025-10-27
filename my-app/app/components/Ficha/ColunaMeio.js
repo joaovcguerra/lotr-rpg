@@ -1,3 +1,4 @@
+// app/components/Ficha/ColunaMeio.js
 'use client';
 
 import { FaTrashAlt } from "react-icons/fa";
@@ -6,8 +7,15 @@ export default function ColunaMeio({
     styles, activeTab, setActiveTab, inventory, addItemToInventory,
     removeItemFromInventory, handleItemChange, openDescriptionModal,
     raceData, valar, selectedValar, handleValarChange, valarData,
-    subclassData, maxSpace, currentSpace, maxWeight, currentWeight, penalty
+    subclassData, maxSpace, currentSpace, maxWeight, currentWeight, penalty,
+    level // Prop de Nível que vamos usar agora
 }) {
+
+    // Filtra as habilidades de level up que devem ser exibidas
+    const unlockedAbilities = subclassData ? subclassData.levelUp.filter(ability =>
+        Number(level) >= ability.level
+    ) : [];
+
     return (
         <div className={styles.column}>
             <div className={styles.section}>
@@ -33,10 +41,24 @@ export default function ColunaMeio({
                         <div>
                             {subclassData ? (
                                 <>
+                                    {/* Habilidades Base */}
                                     <div className={styles.ability}><strong>Técnica: {subclassData.tecnica.nome}</strong><p className={styles.abilityDescription}>{subclassData.tecnica.descricao}</p></div>
                                     <div className={styles.ability}><strong>Tradição: {subclassData.tradicao.nome}</strong><p className={styles.abilityDescription}>{subclassData.tradicao.descricao}</p></div>
                                     <div className={styles.ability}><strong>Mal Hábito: {subclassData.mauHabito.nome}</strong><p className={styles.abilityDescription}>{subclassData.mauHabito.descricao}</p></div>
                                     <div className={styles.ability}><strong>Prática</strong><p className={styles.abilityDescription}>{subclassData.pratica}</p></div>
+
+                                    {/* Habilidades de Level Up Desbloqueadas */}
+                                    {unlockedAbilities.length > 0 && (
+                                        <div className={styles.levelUpContainer}>
+                                            <h4 className={styles.subTitle}>Habilidades de Nível</h4>
+                                            {unlockedAbilities.map(ability => (
+                                                <div key={ability.nome} className={styles.ability}>
+                                                    <strong>Nível {ability.level}: {ability.nome}</strong>
+                                                    <p className={styles.abilityDescription}>{ability.descricao}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
                                 </>
                             ) : (<p className={styles.placeholderText}>Selecione uma classe e subclasse para ver suas habilidades.</p>)}
                         </div>
@@ -51,7 +73,7 @@ export default function ColunaMeio({
                             </div>
                             {valarData && (
                                 <div className={styles.valarDetails}>
-                                    <div className={styles.ability}><strong>Benção: {valarData.bencao.nome}</strong><p className={styles.abilityDescription}>{valarData.bencao.descricao}</p></div>
+                                    <div className={styles.ability}><strong>Benção: {valarData.bencao.nome}</strong><p className={styles.abilityDescription}>{valarData.restricoes}</p></div>
                                     <div className={styles.ability}><strong>Restrições</strong><p className={styles.abilityDescription}>{valarData.restricoes}</p></div>
                                     <div className={styles.ability}><strong>Local de Adoração</strong><p className={styles.abilityDescription}>{valarData.localAdoracao}</p></div>
                                 </div>

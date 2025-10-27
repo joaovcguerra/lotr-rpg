@@ -1,3 +1,4 @@
+// app/components/Ficha/ColunaEsquerda.js
 'use client';
 
 import { FaInfoCircle } from 'react-icons/fa';
@@ -7,7 +8,8 @@ export default function ColunaEsquerda({
     custoValue, setCustoValue, regenValue, setRegenValue, applyHpChange, applyManaChange, handleMaxStatChange,
     races, selectedRace, handleRaceChange, classes, selectedClass, handleClassChange,
     availableSubclasses, selectedSubclass, handleSubclassChange, oficios, selectedOficio,
-    handleOficioChange, openOficioModal
+    handleOficioChange, openOficioModal,
+    level, handleLevelChange // Props que vamos usar agora
 }) {
     return (
         <div className={styles.column}>
@@ -30,7 +32,18 @@ export default function ColunaEsquerda({
                             </select>
                         </div>
                     </div>
-                    <div className={styles.field}><label>Nível:</label><input type="text" inputMode="numeric" className={styles.levelInput} maxLength="2" /></div>
+                    {/* ===== CAMPO DE NÍVEL ATUALIZADO AQUI ===== */}
+                    <div className={styles.field}>
+                        <label>Nível:</label>
+                        <input
+                            type="text"
+                            inputMode="numeric"
+                            className={styles.levelInput}
+                            maxLength="2"
+                            value={level}
+                            onChange={handleLevelChange}
+                        />
+                    </div>
                 </div>
 
                 <div className={styles.classSubclassFields}>

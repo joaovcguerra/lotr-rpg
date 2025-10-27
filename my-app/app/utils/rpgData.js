@@ -1,5 +1,3 @@
-// app/utils/rpgData.js
-
 export const races = [
     {
         nome: 'Anões',
@@ -297,51 +295,42 @@ export const classes = [
         subclasses: [
             {
                 nome: 'Fúria Ancestral',
-                tecnica: {
-                    nome: 'Braço Longo',
-                    descricao: 'Em posse de uma grande arma, pode atacar múltiplos inimigos de uma vez dependendo da altura deles.'
-                },
-                tradicao: {
-                    nome: 'Ação Selvagem',
-                    descricao: 'Role iniciativa com bônus de Força de Vontade. No primeiro round, você tem dois ataques.'
-                },
-                mauHabito: {
-                    nome: 'Não Simpatizam com Anões',
-                    descricao: 'Role Força de Vontade (dif 14) para simpatizar com anões.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Braço Longo', descricao: 'Em posse de uma grande arma, pode atacar múltiplos inimigos de uma vez dependendo da altura deles.' },
+                tradicao: { nome: 'Ação Selvagem', descricao: 'Role iniciativa com bônus de Força de Vontade. No primeiro round, você tem dois ataques.' },
+                mauHabito: { nome: 'Não Simpatizam com Anões', descricao: 'Role Força de Vontade (dif 14) para simpatizar com anões.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Garras de Urso', descricao: 'Orcs são os principais inimigos e os favoritos dos Beornings. Tenha +2 no acerto contra orcs e +3 dados de precisão.' },
+                    { level: 4, nome: 'Tradição – Boca de Urso', descricao: 'Os Beornings são ótimos padeiros. Você se torna capaz de fazer pão de mel, que cura 4 de energia de viagem e concede HP temporário de 2d8.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Seu nome é sua bandeira, e o erguer de seu braço movimenta o mundo. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Presas de Urso', descricao: 'Uma vez que receber um dano de um ataque, aplique -3 no próximo. Se tentarem de novo no mesmo round, -5; posteriormente, -7.' }
+                ]
             },
             {
                 nome: 'Filhos Berserks',
-                tecnica: {
-                    nome: 'Golpe Bárbaro',
-                    descricao: 'Com um porrete ou martelo, acerte a cabeça. A vítima pode sofrer penalidades em Sabedoria, Inteligência e precisão.'
-                },
-                tradicao: {
-                    nome: 'Amantes dos Campos',
-                    descricao: 'Ganhe +8 km por dia em biomas de floresta.'
-                },
-                mauHabito: {
-                    nome: 'Burros',
-                    descricao: 'Você é iletrado e ingênuo. Tenha desvantagem em testes de Inteligência ou Conhecimento.'
-                },
-                pratica: 'Escolha um ofício, mas ele não pode ser complexo.'
+                tecnica: { nome: 'Golpe Bárbaro', descricao: 'Com um porrete ou martelo, acerte a cabeça. A vítima pode sofrer penalidades em Sabedoria, Inteligência e precisão.' },
+                tradicao: { nome: 'Amantes dos Campos', descricao: 'Ganhe +8 km por dia em biomas de floresta.' },
+                mauHabito: { nome: 'Burros', descricao: 'Você é iletrado e ingênuo. Tenha desvantagem em testes de Inteligência ou Conhecimento.' },
+                pratica: 'Escolha um ofício, mas ele não pode ser complexo.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Animais Acuados', descricao: 'Ao chegar na metade do HP, role Força de Vontade (dificuldade 14). Se passar, ganhe um ataque extra e +2 dados de precisão. Se falhar, receba -3 em ações contra inimigos e tenha vontade de fugir.' },
+                    { level: 4, nome: 'Tradição – Alma Selvagem', descricao: 'Vista a pele de um animal e consiga o poder ou capacidade daquele animal.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Seu nome é sua bandeira, e o erguer de seu braço movimenta o mundo. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Alfa', descricao: 'Role Carisma + Força de Vontade contra animais do mesmo tipo da sua pele. Se eles falharem, ficam sob seu comando; se passarem, ficam intimidados por você e não querem briga.' }
+                ]
             },
             {
                 nome: 'Ent-Fúria',
-                tecnica: {
-                    nome: 'Arma Improvisada',
-                    descricao: 'Use um destroço como arma. Terá dano de soco +3 no dado, com bônus na precisão, mas pode quebrar.'
-                },
-                tradicao: {
-                    nome: 'Pés Profundos',
-                    descricao: 'Enraíze seus pés no chão e ganhe bônus de Constituição conforme o terreno.'
-                },
-                mauHabito: {
-                    nome: 'Sono Profundo',
-                    descricao: 'Gostam de dormir por longos períodos, o que pode atrasar o grupo se não for cumprido.'
-                },
-                pratica: 'Você não tem ofício— apenas cuida das árvores.'
+                tecnica: { nome: 'Arma Improvisada', descricao: 'Use um destroço como arma. Terá dano de soco +3 no dado, com bônus na precisão, mas pode quebrar.' },
+                tradicao: { nome: 'Pés Profundos', descricao: 'Enraíze seus pés no chão e ganhe bônus de Constituição conforme o terreno.' },
+                mauHabito: { nome: 'Sono Profundo', descricao: 'Gostam de dormir por longos períodos, o que pode atrasar o grupo se não for cumprido.' },
+                pratica: 'Você não tem ofício— apenas cuida das árvores.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Olá, Pequeninos', descricao: 'Seres menores que você têm dificuldades mínimas: mesmo que falhe no dado, se eles não passarem, são atingidos ou pegos. Pouco menores: dif. 8; menores: dif. 11; bem menores: dif. 14; muito menores: dif. 16.' },
+                    { level: 4, nome: 'Tradição – A Marcha dos Ents', descricao: 'Uma vez por dia, por um número de rounds igual ao seu bônus de Vontade, ignore debuffs de movimento ou lentidão e ganhe duas ações de ataque.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Seu nome é sua bandeira, e o erguer de seu braço movimenta o mundo. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Ent-Canto', descricao: 'Cante para as árvores, transformando terrenos de mata densa, brejos ou mata rala em estrada boa por um total igual a Carisma + Força de Vontade em hexágonos. Gaste 5 de mana. Depois que vocês passarem, o terreno volta ao normal.' }
+                ]
             }
         ]
     },
@@ -350,51 +339,42 @@ export const classes = [
         subclasses: [
             {
                 nome: 'Caçadores de Dragões',
-                tecnica: {
-                    nome: 'Tiro Profundo',
-                    descricao: 'Usando um arco pesado dos homens, dispare uma flecha para criar um ponto fraco no inimigo. Acertar esse ponto dobra o número do seu dado de dano.'
-                },
-                tradicao: {
-                    nome: 'Predador Comum',
-                    descricao: 'Marque uma fonte de alimento para caçar e diminua em 3 a dificuldade de qualquer teste de caça.'
-                },
-                mauHabito: {
-                    nome: 'Supersticiosos',
-                    descricao: 'Você acredita demais em lendas e mitos. Acrescente +2 na dificuldade ou +2 em qualquer benefício/malefício de uma lenda ou mito.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Tiro Profundo', descricao: 'Usando um arco pesado dos homens, dispare uma flecha para criar um ponto fraco no inimigo. Acertar esse ponto dobra o número do seu dado de dano.' },
+                tradicao: { nome: 'Predador Comum', descricao: 'Marque uma fonte de alimento para caçar e diminua em 3 a dificuldade de qualquer teste de caça.' },
+                mauHabito: { nome: 'Supersticiosos', descricao: 'Você acredita demais em lendas e mitos. Acrescente +2 na dificuldade ou +2 em qualquer benefício/malefício de uma lenda ou mito.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Perseguição', descricao: 'Perseguidor: enquanto tiver mais Inteligência que a Sabedoria do inimigo, ele terá -3 para fugir de você e -1 em esquiva. Fugitivo: se tiver mais Sabedoria que a Inteligência de seu inimigo, perceba onde ele está e consiga enganá-lo. Rode Destreza+LEVEL; depois de dois sucessos seguidos, você o perde de vista.' },
+                    { level: 4, nome: 'Tradição – Última Flecha', descricao: 'Sua última flecha chegou, seu último ataque. Dispare sua última flecha com +2 no acerto e o dobro de dados de precisão.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – O Herói', descricao: 'Gaste 4 de mana e 1 por rodada para lutar. Dê seu bônus de Força de Vontade no acerto de seus aliados, e eles rodam Força de Vontade com vantagem.' }
+                ]
             },
             {
                 nome: 'Caçadores Élficos',
-                tecnica: {
-                    nome: 'Arco Élfico',
-                    descricao: 'Usando Destreza em um arco leve, pode disparar até 1+LEVEL flechas por rodada, com penalidade cumulativa de -1 no acerto e -1 dado de precisão a cada disparo.'
-                },
-                tradicao: {
-                    nome: 'Guerreiros Saltitantes',
-                    descricao: 'Você pode escalar e saltar como se estivesse andando. Tenha o mesmo deslocamento escalando que andando e ganhe 15 km por dia extras em locais com apoio.'
-                },
-                mauHabito: {
-                    nome: 'Sérios Demais',
-                    descricao: 'Você não tem senso de humor e é péssimo em perceber sarcasmo. Role Inteligência (dif 14) para fingir que está no clima da graça.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Arco Élfico', descricao: 'Usando Destreza em um arco leve, pode disparar até 1+LEVEL flechas por rodada, com penalidade cumulativa de -1 no acerto e -1 dado de precisão a cada disparo.' },
+                tradicao: { nome: 'Guerreiros Saltitantes', descricao: 'Você pode escalar e saltar como se estivesse andando. Tenha o mesmo deslocamento escalando que andando e ganhe 15 km por dia extras em locais com apoio.' },
+                mauHabito: { nome: 'Sérios Demais', descricao: 'Você não tem senso de humor e é péssimo em perceber sarcasmo. Role Inteligência (dif 14) para fingir que está no clima da graça.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Tiro à Queima-Roupa', descricao: 'Dispare uma flecha à queima-roupa com -5 no acerto. Se acertar, você dá o dobro de dados de precisão como dano. Não é possível disparar à queima-roupa sem essa habilidade.' },
+                    { level: 4, nome: 'Tradição – Disparo Maestral', descricao: 'Gastando 3 de mana, a flecha que matou um inimigo dará o restante do dano em outro inimigo próximo.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Presença do Predador', descricao: 'Na ação extra, gastando 5 de mana, rode um teste de Intimidação em área: Carisma +1 para cada inimigo que matou naquele turno. Se os inimigos falharem, ficam com -2 dados de precisão; se falharem muito, fogem aterrorizados.' }
+                ]
             },
             {
                 nome: 'Pequenos Caçadores',
-                tecnica: {
-                    nome: 'Olhos Precisos',
-                    descricao: 'Seus olhos são atentos e não perdem nada. Tenha +1d4 no acerto e na percepção.'
-                },
-                tradicao: {
-                    nome: 'Armadilhas',
-                    descricao: 'Você pode criar armadilhas para prender criaturas se tiver recursos, com diferentes dificuldades para diferentes tamanhos de presas.'
-                },
-                mauHabito: {
-                    nome: 'Mau Dia',
-                    descricao: 'Você tem o hábito de pisar na bola no momento crucial. Role Força de Vontade (dif 11) para manter o foco em momentos importantes do grupo.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Olhos Precisos', descricao: 'Seus olhos são atentos e não perdem nada. Tenha +1d4 no acerto e na percepção.' },
+                tradicao: { nome: 'Armadilhas', descricao: 'Você pode criar armadilhas para prender criaturas se tiver recursos, com diferentes dificuldades (11-16). A dificuldade de escapar é metade de sua Inteligência + Sabedoria + LEVEL.' },
+                mauHabito: { nome: 'Mau Dia', descricao: 'Você tem o hábito de pisar na bola no momento crucial. Role Força de Vontade (dif 11) para manter o foco em momentos importantes do grupo.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Braços Fortes', descricao: 'Com faca ou pedra, some +1 de precisão em cada ataque e +3 no dano.' },
+                    { level: 4, nome: 'Tradição – Ataque Sequencial', descricao: 'Salte sobre um inimigo com ferocidade e distribua até seu bônus de Força de Vontade em ataques, porém cada ataque terá -3 dados de precisão, pois são golpes fracos.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Grande Caçador', descricao: 'Não se intimide com nada. Gaste 6 de mana e desfira um ataque com dano 8d10 + Força de Vontade. Tenha vantagem no acerto. Se acertar, causa cicatriz ou morte em seu inimigo.' }
+                ]
             }
         ]
     },
@@ -403,51 +383,42 @@ export const classes = [
         subclasses: [
             {
                 nome: 'Senhores dos Cavalos',
-                tecnica: {
-                    nome: 'Aprenderam a Cavalgar antes de Andar',
-                    descricao: 'Sobre um cavalo, tenha uma ação de movimento e uma ação de ataque extra.'
-                },
-                tradicao: {
-                    nome: 'Filhos de Fram',
-                    descricao: 'Pegue distância e suma da visão do inimigo. O próximo ataque terá +4 de dano, +2 dados de precisão e +3 no acerto.'
-                },
-                mauHabito: {
-                    nome: 'Tolos Arrogantes',
-                    descricao: 'Rohirrim são muito orgulhosos e preferem morrer a pedir ajuda. Role Força de Vontade (dif 16) para conseguir pedir ajuda a alguém.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Aprenderam a Cavalgar antes de Andar', descricao: 'Sobre um cavalo, tenha uma ação de movimento e uma ação de ataque extra.' },
+                tradicao: { nome: 'Filhos de Fram', descricao: 'Pegue distância e suma da visão do inimigo. O próximo ataque terá +4 de dano, +2 dados de precisão e +3 no acerto.' },
+                mauHabito: { nome: 'Tolos Arrogantes', descricao: 'Rohirrim são muito orgulhosos e preferem morrer a pedir ajuda. Role Força de Vontade (dif 16) para conseguir pedir ajuda a alguém.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Filhos de Folca', descricao: 'Em posse de uma lança, você é habilidoso. A cada +1 em inteligência, aumente a precisão do golpe. Se estiver num cavalo, acrescente +18 ao dano de seus golpes.' },
+                    { level: 4, nome: 'Tradição – Filhos de Eorl', descricao: 'O primeiro rei de Rohan os ensinou a cavalgar. Acrescente seu bônus de força de vontade + bônus de carisma no km por dia de seu cavalo.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Filhos de Helm', descricao: 'Seus punhos se revestem de sua força e dureza de espírito. Acrescente metade do atributo de força em seus golpes, e seu bônus de força de vontade é acrescentado à precisão de seu golpe. Gasta 4 de mana.' }
+                ]
             },
             {
                 nome: 'Pés de Ferro',
-                tecnica: {
-                    nome: 'Cabeças Duras',
-                    descricao: 'Sua cabeçada causa dano aumentado com base na sua Força. Mesmo que o alvo defenda com Constituição, ele toma metade do dano.'
-                },
-                tradicao: {
-                    nome: 'Giro Descuidado',
-                    descricao: 'Quando cercado por 3 ou mais inimigos, gaste uma ação completa para realizar um ataque giratório. Inimigos devem passar em um teste de Destreza para não serem atingidos.'
-                },
-                mauHabito: {
-                    nome: 'Não é de ferro?',
-                    descricao: 'Você não confia em nada que não seja de ferro ou aço, insistindo em usar e pagar mais por esses materiais. Role Força de Vontade (dif 18) para ser convencido do contrário.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Cabeças Duras', descricao: 'Sua cabeçada causa dano aumentado com base na sua Força (d6 vira d7, +2 FOR vira d8, etc). Se a pessoa defender com CON, mesmo que passe, toma metade do dano.' },
+                tradicao: { nome: 'Giro Descuidado', descricao: 'Cercado por 3+ inimigos, gaste uma ação completa. Inimigos rolam Destreza (dif = 1/2 DES + INT + VON). Se um passar, ataca com -5; se dois+, você toma dano automático.' },
+                mauHabito: { nome: 'Não é de ferro?', descricao: 'Você não confia em nada que não seja de ferro ou aço. Role Força de Vontade (dif 18) para ser convencido do contrário.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Impacto Pesado', descricao: 'Ataque com -5. Se acertar, a cada +2 de Força de Vontade retire uma ação de seu oponente. Se não puder cobrir todas, role um d3 (ataque, extra, movimento).' },
+                    { level: 4, nome: 'Tradição – Caminho Denso', descricao: 'Sobre montarias ou veículos revestidos em metal, acrescente seu bônus de força de vontade +1 km por dia.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Corpo Sólido', descricao: 'Caso receba um ataque crítico ou 20 puro que o levaria à morte, ignore o ataque e pule a ação do inimigo. Perca 3 de um atributo mental. Regenere seu HP. Gaste 4 de mana.' }
+                ]
             },
             {
                 nome: 'Cavaleiros das Marés',
-                tecnica: {
-                    nome: 'Passo Fluído',
-                    descricao: 'Você anda normalmente em terrenos fluidos e movediços (como barcos). Diminua em 3 os testes de resistência ou equilíbrio nesses ambientes.'
-                },
-                tradicao: {
-                    nome: 'Empunhadura Dupla',
-                    descricao: 'Use duas espadas e receba um ataque extra. Seu primeiro ataque terá -3 de precisão, e o segundo é normal.'
-                },
-                mauHabito: {
-                    nome: 'Antipatia a Outros Povos',
-                    descricao: 'Com exceção de Elfos e moradores de Lhûn, você não se importa com a causa de outros povos. Role Força de Vontade (dif 14) para simpatizar.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Passo Fluído', descricao: 'Você anda normalmente em terrenos fluidos e movediços (como barcos). Diminua em 3 os testes de resistência ou equilíbrio nesses ambientes.' },
+                tradicao: { nome: 'Empunhadura Dupla', descricao: 'Use duas espadas e receba um ataque extra. Seu primeiro ataque terá -3 de precisão no acerto, e o segundo é normal.' },
+                mauHabito: { nome: 'Antipatia a Outros Povos', descricao: 'Com exceção de Elfos e moradores de Lhûn, você não se importa com a causa de outros povos. Role Força de Vontade (dif 14) para simpatizar.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Grande Cisne', descricao: 'Faça a imagem de um grande cisne à frente em seu barco. Acrescente seu bônus de força de vontade + nível em km por dia de movimento marítimo.' },
+                    { level: 4, nome: 'Tradição – Arremesso Dinâmico', descricao: 'Uma vez por rodada, arremesse qualquer arma com +2 dados de precisão. Após, use ação de movimento e passe em Destreza (16). Se o fizer, não recebe ataques de oportunidade e ganha um ataque extra com a arma arremessada (alcance 4m).' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Esgrima', descricao: 'Role Sabedoria (dif = INT + VON do inimigo). Se passar, dê um único ataque fora de seu turno. Gaste 4 de mana.' }
+                ]
             }
         ]
     },
@@ -456,35 +427,29 @@ export const classes = [
         subclasses: [
             {
                 nome: 'Línguas Trapaceiras',
-                tecnica: {
-                    nome: 'Mãos Mágicas',
-                    descricao: 'Faça coisas desaparecerem diante dos olhos das pessoas com um teste de Carisma contra a Sabedoria delas, modificado pela sua Destreza e a Inteligência do alvo.'
-                },
-                tradicao: {
-                    nome: 'Amigos Distantes',
-                    descricao: 'Use seus contatos e informantes para obter informações ou oportunidades de dinheiro, com penalidades se estiver fora de sua região de origem.'
-                },
-                mauHabito: {
-                    nome: 'Cobiçosos',
-                    descricao: 'Você sempre quer mais do que já tem. Role Força de Vontade (dif 11) para não abusar da sorte.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Mãos Mágicas', descricao: 'Faça coisas desaparecerem. Se DES + LEVEL > INT do alvo, role Carisma vs Sabedoria (alvo com -3). Se DES < INT, role com -5.' },
+                tradicao: { nome: 'Amigos Distantes', descricao: 'Use contatos. Role SAB + LEVEL para informação, CAR + LEVEL para convencê-los. Escolha uma região (Lindon, Eriador, etc.). Fora dela, -5 no teste; muito longe, desvantagem.' },
+                mauHabito: { nome: 'Cobiçosos', descricao: 'Você sempre quer mais do que já tem. Role Força de Vontade (dif 11) para não abusar da sorte.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Grande Patife', descricao: 'Role Carisma (dif = INT + VON do alvo) para tirar informação de alguém sem que ela perceba.' },
+                    { level: 4, nome: 'Tradição – Apunhalada pelas Costas', descricao: 'Ataque alguém pelas costas e ganhe 2 + bônus de Sabedoria em dados de precisão extras.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Bons Amigos', descricao: 'Agite sua rede de contatos (d18 + CAR dias). Consiga descontos (40% na sua área, 15% em outras) ou recursos em massa.' }
+                ]
             },
             {
                 nome: 'Pequenos Sorrateiros',
-                tecnica: {
-                    nome: 'Mãos Pequenas',
-                    descricao: 'Armas pequenas como adagas ou punhais têm seu dado de dano aumentado em 1 e ganham 2 dados de precisão extras.'
-                },
-                tradicao: {
-                    nome: 'Mais do que se Vê',
-                    descricao: 'Uma vez a cada 4 dias, você pode rolar um dado de ataque com vantagem e +4 dados de precisão, ou realizar uma ação com dupla vantagem.'
-                },
-                mauHabito: {
-                    nome: 'Bons Anfitriões',
-                    descricao: 'Você é extremamente bem-educado e se torna refém de qualquer visita que aparecer em sua casa, sendo obrigado a deixá-la entrar.'
-                },
-                pratica: 'Escolha um ofício — inclusive, seu ofício será um sobrenome extra além do seu.'
+                tecnica: { nome: 'Mãos Pequenas', descricao: 'Armas pequenas como adagas ou punhais têm seu dado de dano aumentado em 1 e ganham 2 dados de precisão extras.' },
+                tradicao: { nome: 'Mais do que se Vê', descricao: 'Uma vez a cada 4 dias, você pode rolar um dado de ataque com vantagem e +4 dados de precisão extras, ou realizar uma ação com dupla vantagem.' },
+                mauHabito: { nome: 'Bons Anfitriões', descricao: 'Você é extremamente bem-educado e se torna refém de qualquer visita que aparecer em sua casa, sendo obrigado a deixá-la entrar.' },
+                pratica: 'Escolha um ofício — inclusive, seu ofício será um sobrenome extra além do seu.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Pequeno Ensaboado', descricao: 'Se INT > SAB do oponente, role CAR +2 vs ele para enrolá-lo com algo que deseja (ganha 2 rounds). Cada tentativa subsequente tem -3 acumulativo. Se INT < Percepção, começa com -3.' },
+                    { level: 4, nome: 'Tradição – Solução Simples', descricao: 'Improvise. Role INT + VON (dif 18). Se passar, o mestre dará uma solução usando o ambiente (arma, escudo, saída).' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Velho Aventureiro', descricao: 'Some seu bônus de Inteligência a qualquer dado e role com vantagem em testes de Inteligência.' }
+                ]
             }
         ]
     },
@@ -493,51 +458,42 @@ export const classes = [
         subclasses: [
             {
                 nome: 'Sangue dos Imortais',
-                tecnica: {
-                    nome: 'Defesa Circular',
-                    descricao: 'Com lança ou espada longa, ao defender um ataque corpo a corpo, você pode contra-atacar automaticamente com -5 no acerto.'
-                },
-                tradicao: {
-                    nome: 'Relíquia Viva',
-                    descricao: 'Diminua em 6 a dificuldade de qualquer teste de conhecimento sobre um inimigo à sua escolha. Aprenda uma língua extra.'
-                },
-                mauHabito: {
-                    nome: 'Amor Possessivo',
-                    descricao: 'Protetores ferozes do que amam. Ganhe +2 dados de precisão se ameaçarem o que você ama. Role Força de Vontade (dif 14) para conseguir abandonar ou deixar para trás.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Defesa Circular', descricao: 'Com lança ou espada longa, ao defender um ataque corpo a corpo, você pode contra-atacar automaticamente com -5 no acerto e -1 dado de dano.' },
+                tradicao: { nome: 'Relíquia Viva', descricao: 'Diminua em 6 a dificuldade de qualquer teste de conhecimento sobre um inimigo à sua escolha. Aprenda uma língua extra.' },
+                mauHabito: { nome: 'Amor Possessivo', descricao: 'Protetores ferozes do que amam. Ganhe +2 dados de precisão se ameaçarem o que você ama. Role Força de Vontade (dif 14) para conseguir abandonar ou deixar para trás.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Legado Élfico', descricao: 'Através da destreza élfica, forje uma arma ou armadura para si. Ponha nela o encantamento que deseja; essa arma será sua lenda.' },
+                    { level: 4, nome: 'Tradição – Benção Élfica', descricao: 'Com recursos, produza cura. Gaste 3 de mana para curar ferida leve, ou 6 de mana para regredir um ferimento grave, maldição ou bruxaria (torna tolerável temporariamente).' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Bloqueio Divino', descricao: 'Ao defender golpe físico, oponente rola CON vs sua VON. Se passar, perde movimento ou extra; se falhar, perde a ação e toma 1/3 do seu dano padrão.' }
+                ]
             },
             {
                 nome: 'Filhos de Númenor',
-                tecnica: {
-                    nome: 'Escudo Gondoriano',
-                    descricao: 'Golpeie com seu escudo. Se o acerto ultrapassar a CON + bônus de Força de Vontade do oponente, você ganha um segundo ataque garantido.'
-                },
-                tradicao: {
-                    nome: 'Chama de Gondor',
-                    descricao: 'Brade para inspirar seus aliados. Role Força de Vontade (dif 16). Se passar, aliados ganham +2 em ações e seus dados de dano aumentam por 3 rodadas. Custo: 4 de mana.'
-                },
-                mauHabito: {
-                    nome: 'Soberbos',
-                    descricao: 'Têm orgulho extremo de sua nacionalidade. Role Força de Vontade (dif 14) sempre que sentirem que sua cidade foi desrespeitada.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Escudo Gondoriano', descricao: 'Golpeie com seu escudo. Se o acerto ultrapassar a CON + bônus de VON do oponente, você ganha um segundo ataque garantido. Se errar, mas o inimigo defender com CON, ele toma o ataque garantido com 1/3 do dano.' },
+                tradicao: { nome: 'Chama de Gondor', descricao: 'Brade para inspirar. Role VON (dif 16). Se passar, aliados ganham +2 em ações e dados de dano aumentam (ex: d6->d8) por 3 rodadas. Custo: 4 de mana.' },
+                mauHabito: { nome: 'Soberbos', descricao: 'Têm orgulho extremo de sua nacionalidade. Role Força de Vontade (dif 14) sempre que sentirem que sua cidade foi desrespeitada.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Pela Árvore Branca', descricao: 'Gaste 6 de mana e execute um golpe com o dobro dos dados de precisão.' },
+                    { level: 4, nome: 'Tradição – Por Gondor', descricao: 'Após cair na barra de Força de Vontade e retornar, gaste 8 de mana e reduza o dado de dano dos oponentes em (bônus de VON + nível), respeitando o mínimo de d2.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Até o Retorno do Rei', descricao: 'Erga sua espada. Sob luz pura, emane aura que causa 9d18 + VON de dano. Inimigos rolam CON (dif 14 + VON + nível). Inimigos de pura maldade recebem metade do dano se passarem. Custo: 11 de mana (dura 1 ação).' }
+                ]
             },
             {
                 nome: 'Paladinos Errantes',
-                tecnica: {
-                    nome: 'Arma Única',
-                    descricao: 'Com uma arma longa e apenas ela, você pode aparar ataques. Se defender, o inimigo perde a ação de movimento e a extra.'
-                },
-                tradicao: {
-                    nome: 'Defensor Errante',
-                    descricao: 'Gaste 3 de mana para perceber a malícia nos corações. Role Sabedoria contra a Força de Vontade dos inimigos para descobrir intenções malignas.'
-                },
-                mauHabito: {
-                    nome: 'Insubordináveis',
-                    descricao: 'Respeitam apenas seu Capitão. Role Força de Vontade (dif 14) para obedecer ordens de quem não seja o Capitão.'
-                },
-                pratica: 'Sendo um viajante, você precisa de um ofício para sobreviver.'
+                tecnica: { nome: 'Arma Única', descricao: 'Com uma arma longa, apare ataques. Role defesa usando o atributo do inimigo. Se defender, inimigo perde movimento e extra. Se falhar, reduza 2 dados de precisão do dano.' },
+                tradicao: { nome: 'Defensor Errante', descricao: 'Gaste 3 de mana. Role Sabedoria vs VON dos inimigos. Se falharem, descobre intenções malignas. Se passarem, sabe que há malícia.' },
+                mauHabito: { nome: 'Insubordináveis', descricao: 'Respeitam apenas seu Capitão. Role Força de Vontade (dif 14) para obedecer ordens de quem não seja o Capitão.' },
+                pratica: 'Sendo um viajante, você precisa de um ofício para sobreviver.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Pedras Falam', descricao: 'Encoste a cabeça e role Sabedoria; ouça até (1 + nível) dias à frente, como um sonar. Custo: 4 de mana.' },
+                    { level: 4, nome: 'Tradição – Valar Suspiram', descricao: 'Sua fé é verdadeira. Escolha um Valar e receba um poder inferior relacionado ao atributo dele.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Passados Ecoam', descricao: 'Role Sabedoria para perceber as marcas no chão. Descubra eventos ocorridos até (bônus de INT + VON) dias no passado. Custo: 6 de mana.' }
+                ]
             }
         ]
     },
@@ -546,99 +502,81 @@ export const classes = [
         subclasses: [
             {
                 nome: 'Sabedoria dos Homens',
-                tecnica: {
-                    nome: 'Pequenas Pedras',
-                    descricao: 'Você é capaz de lapidar pedras e fazer com que elas realizem pequenos truques mágicos.'
-                },
-                tradicao: {
-                    nome: 'Artesão de Belfalas',
-                    descricao: 'Seu nome garante trabalho bem-feito. Ganhe +20% de dinheiro em vendas com outros homens e +10% com elfos.'
-                },
-                mauHabito: {
-                    nome: 'Atenção de Passarinho',
-                    descricao: 'Você está sempre "voando" e desatento. Só se concentra em sua arte e trabalho.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Pequenas Pedras', descricao: 'Você é capaz de lapidar pedras e fazer com que elas realizem pequenos truques mágicos.' },
+                tradicao: { nome: 'Artesão de Belfalas', descricao: 'Seu nome garante trabalho bem-feito. Ganhe +20% de dinheiro em vendas com outros homens e +10% com elfos.' },
+                mauHabito: { nome: 'Atenção de Passarinho', descricao: 'Você está sempre "voando" e desatento. Só se concentra em sua arte e trabalho.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Artesão de Lebethron', descricao: 'Com madeira Lebethron, realize magias e truques mais complexos (caixa mais dura que ferro, bastão de guia, etc.).' },
+                    { level: 4, nome: 'Tradição – Artesão Naval', descricao: 'Você agora consegue realizar seus truques em barcos. Através da madeira Lebethron, pode colocar encantamentos em embarcações.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Pedras Lisas', descricao: 'Crie tijolos e construções tão lisas que os espaços entre elas não são visíveis (como os muros de Minas Tirith). Indestrutíveis pela mais alta arte dos homens.' }
+                ]
             },
             {
                 nome: 'Sabedoria Drúedain',
-                tecnica: {
-                    nome: 'Emoções Verdadeiras',
-                    descricao: 'Suas emoções são genuínas a ponto de contagiar as pessoas ao redor (rir, enraivecer, chorar).'
-                },
-                tradicao: {
-                    nome: 'Estátua de Carne',
-                    descricao: 'Você consegue ficar imóvel como uma estátua por um dia e uma noite sem piscar.'
-                },
-                mauHabito: {
-                    nome: 'Muito Feios',
-                    descricao: 'Sua aparência os torna isolados e pouco sociais, muitas vezes confundidos com orcs.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Emoções Verdadeiras', descricao: 'Suas emoções são genuínas a ponto de contagiar as pessoas ao redor (rir, enraivecer, chorar). Gaste 4 de mana, inimigos rolam VON vs seu CAR + nível.' },
+                tradicao: { nome: 'Estátua de Carne', descricao: 'Fique imóvel como uma estátua por um dia e uma noite. Teste VON (dif. 14) para manter. Inimigos rolam SAB vs sua dif (CAR + VON + nível). Gaste 5 de mana + bônus de CON.' },
+                mauHabito: { nome: 'Muito Feios', descricao: 'Sua aparência os torna isolados e pouco sociais, muitas vezes confundidos com orcs.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Amigos do Mundo', descricao: 'A terra canta para vocês. Escolha 1 terreno com +3 percepção e 2 dados de precisão; 2 terrenos com +2 percepção e 1 dado; 2 terrenos com +1 percepção.' },
+                    { level: 4, nome: 'Tradição – Púkel-Man', descricao: 'Crie estátuas de proteção. Teste DES (dif. 16). Se falhar, gasta 3 mana, se passar, gasta 6. Criaturas malignas rolam vs sua VON + nível. Se falharem, desviam ou sofrem consequências.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Canto das Montanhas Brancas', descricao: 'Cântico mortal. Gaste 9 mana e role 9d6 + VON. Dano sonoro, ignora armaduras e resistências.' }
+                ]
             },
             {
                 nome: 'Sábios das Neves',
-                tecnica: {
-                    nome: 'Entalhes Ferozes',
-                    descricao: 'Crie armas serrilhadas que dão dano extra, mas podem prender no ambiente.'
-                },
-                tradicao: {
-                    nome: 'Línguas Estranhas',
-                    descricao: 'Sua voz se mistura com os ventos, confundindo inimigos e podendo causar medo.'
-                },
-                mauHabito: {
-                    nome: 'Calorentos',
-                    descricao: 'Acostumados ao frio, sofrem em regiões quentes, perdendo energia de viagem extra.'
-                },
-                pratica: 'Escolha um ofício adequado a povos esquimós.'
+                tecnica: { nome: 'Entalhes Ferozes', descricao: 'Crie armas serrilhadas (Teste DES ou INT). Um d10 vira d5 e ganha +1+nível de dano extra. Se tirar abaixo de 8, a arma prende.' },
+                tradicao: { nome: 'Línguas Estranhas', descricao: 'Gaste 4 mana, sua voz se mistura com os ventos. Teste CAR: +1 acerto (estradas) a +5 (terras desoladas). Pode causar medo.' },
+                mauHabito: { nome: 'Calorentos', descricao: 'Acostumados ao frio, sofrem em regiões quentes. Abaixo de Dol Guldur perdem 2 extras de energia de viagem, abaixo de Pelargir perdem 4.' },
+                pratica: 'Escolha um ofício adequado a povos esquimós.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Calor Perene', descricao: 'Gaste 4 mana e mantenha calor de uma área por (bônus de VON + Nível) horas.' },
+                    { level: 4, nome: 'Tradição – Ventos do Norte', descricao: 'Gaste 7 mana e jogue terra/neve. Corrente gélida cobre seus rastros. Inimigos sofrem dificuldade (VON + SAB).' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Sonhos Boreais', descricao: 'Gaste 11 mana, beba chá e veja um perigo futuro. Sob a aurora boreal, pode ver o destino de outra pessoa.' }
+                ]
             },
             {
                 nome: 'Sabedoria dos Pequenos Anões',
-                tecnica: {
-                    nome: 'Machado Pesado',
-                    descricao: 'Após matar um inimigo com machado, gaste 2 de energia de viagem para atacar de novo com dano aumentado.'
-                },
-                tradicao: {
-                    nome: 'Manipuladores de Metais',
-                    descricao: 'Através da forja, desperte os poderes de metais como cobre, estanho, ferro, etc.'
-                },
-                mauHabito: {
-                    nome: 'Bússolas Quebradas',
-                    descricao: 'Péssimo senso de direção e geografia, mas você acredita que tem um ótimo senso.'
-                },
-                pratica: 'Escolha um ofício.'
+                tecnica: { nome: 'Machado Pesado', descricao: 'Após matar um inimigo com machado, gaste 2 de energia de viagem e ataque de novo com +3 no número do dado. Pode repetir.' },
+                tradicao: { nome: 'Manipuladores de Metais', descricao: 'Desperte os poderes de metais (cobre, estanho, ferro, chumbo, zinco, mercúrio).' },
+                mauHabito: { nome: 'Bússolas Quebradas', descricao: 'Péssimo senso de direção. Role com dupla desvantagem. A cada falha, a dificuldade cai em 3. Você acha que tem um ótimo senso.' },
+                pratica: 'Escolha um ofício.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Domínio do Bronze', descricao: 'Você é capaz de melhorar as propriedades e manipular o bronze.' },
+                    { level: 4, nome: 'Tradição – Domínio do Latão', descricao: 'Você é capaz de melhorar as propriedades e manipular o latão.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Domínio do Aço', descricao: 'Você é capaz de melhorar as propriedades e manipular o aço.' }
+                ]
             },
             {
                 nome: 'Sabedoria dos Grandes Anões',
-                tecnica: {
-                    nome: 'Espadas Afiadas',
-                    descricao: 'Qualquer lâmina feita por você tem um fio superior, acrescentando seu bônus de INT + NÍVEL como dano.'
-                },
-                tradicao: {
-                    nome: 'Manipuladores de Pedras Preciosas',
-                    descricao: 'Crie objetos e potencialize capacidades usando pedras como diamante, rubi, safira, etc.'
-                },
-                mauHabito: {
-                    nome: 'Sua Baleia Branca',
-                    descricao: 'Você tem um sonho louco, como recriar um reino anão em Moria ou matar um dragão.'
-                },
-                pratica: 'Escolha um ofício digno de sua origem.'
+                tecnica: { nome: 'Espadas Afiadas', descricao: 'Qualquer lâmina feita por você tem um fio superior, acrescentando seu bônus de INT + NÍVEL como dano.' },
+                tradicao: { nome: 'Manipuladores de Pedras Preciosas', descricao: 'Crie objetos e potencialize capacidades usando pedras preciosas (diamante, rubi, safira, etc.).' },
+                mauHabito: { nome: 'Sua Baleia Branca', descricao: 'Você tem um sonho louco (ex: recriar Moria, matar um dragão).' },
+                pratica: 'Escolha um ofício digno de sua origem.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Domínio da Prata', descricao: 'Saiba manipular a prata e crie maravilhas com ela.' },
+                    { level: 4, nome: 'Tradição – Domínio do Ouro', descricao: 'Saiba manipular o ouro e crie maravilhas com ele.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Domínio do Mithril', descricao: 'Saiba manipular o mithril e crie maravilhas com ele.' }
+                ]
             },
             {
                 nome: 'Sabedoria dos Elfos',
-                tecnica: {
-                    nome: 'Arte de Ofício',
-                    descricao: 'Escolha uma arte (tecelagem, música, etc.). Toda a magia que você criar será nesse sentido.'
-                },
-                tradicao: {
-                    nome: 'Amor à Natureza',
-                    descricao: 'Ame uma característica da natureza (paisagem, equilíbrio, etc.). Sua magia caminhará nessa direção.'
-                },
-                mauHabito: {
-                    nome: 'Bloqueio',
-                    descricao: 'Toda criação sua deve ser única e não pode ser recriada ou repetida.'
-                },
-                pratica: 'Tenha o mesmo trabalho da sua técnica e ganhe +26% de dinheiro por ser um artesão élfico.'
+                tecnica: { nome: 'Arte de Ofício', descricao: 'Escolha uma arte (tecelagem, música, etc.). Toda a magia que você criar será nesse sentido.' },
+                tradicao: { nome: 'Amor à Natureza', descricao: 'Ame uma característica da natureza (paisagem, equilíbrio, etc.). Sua magia caminhará nessa direção.' },
+                mauHabito: { nome: 'Bloqueio', descricao: 'Toda criação sua deve ser única e não pode ser recriada ou repetida.' },
+                pratica: 'Tenha o mesmo trabalho da sua técnica e ganhe +26% de dinheiro por ser um artesão élfico.',
+                levelUp: [
+                    { level: 2, nome: 'Tradição – Material Favorito', descricao: 'Escolha um material da natureza e misture com o elemento que você mais ama, criando algo único e mágico.' },
+                    { level: 4, nome: 'Tradição – Encanto', descricao: 'Sua criação de auge neste nível será sua "Silmarillion". Nada que fizer poderá se equiparar a isso. Se tirar 1 puro no dado, o objeto ainda será grandioso, porém maligno.' },
+                    { level: 5, nome: 'Fama e Glória', descricao: 'Sua lenda se espalhou e seus feitos são conhecidos. Vantagem em qualquer teste de Carisma pela fama e feitos. Desvantagem dupla para tentar passar despercebido.' },
+                    { level: 6, nome: 'Tradição – Herança', descricao: 'Sua herança será inferior ao Encanto, mas poderá replicá-la várias vezes sem rolar dados, contanto que tenha os recursos necessários.' }
+                ]
             }
         ]
     }

@@ -39,6 +39,11 @@ export default function Ficha() {
     });
     const [hp, setHp] = useState({ current: 20, max: 20 });
     const [mana, setMana] = useState({ current: 15, max: 15 });
+    // ===== NOVOS STATES AQUI =====
+    const [vontade, setVontade] = useState({ current: 10, max: 10 });
+    const [vontadeGastoValue, setVontadeGastoValue] = useState('');
+    const [vontadeRegenValue, setVontadeRegenValue] = useState('');
+
     const [danoValue, setDanoValue] = useState('');
     const [curaValue, setCuraValue] = useState('');
     const [custoValue, setCustoValue] = useState('');
@@ -57,7 +62,7 @@ export default function Ficha() {
     const [selectedSubclass, setSelectedSubclass] = useState('');
     const [selectedOficio, setSelectedOficio] = useState('');
     const [isOficioModalOpen, setIsOficioModalOpen] = useState(false);
-    const [level, setLevel] = useState(1); // ===== NOVO STATE PARA O NÍVEL =====
+    const [level, setLevel] = useState(1);
 
     // Lógicas de cálculo para o inventário
     const conBonus = useMemo(() => Number(getModifier(atributos.constituicao)) || 0, [atributos.constituicao]);
@@ -127,8 +132,13 @@ export default function Ficha() {
 
     const handleMaxStatChange = (stat, value) => {
         const newMax = parseInt(value) || 0;
-        if (stat === 'hp') setHp(prev => ({ max: newMax, current: Math.min(prev.current, newMax) }));
-        if (stat === 'mana') setMana(prev => ({ max: newMax, current: Math.min(prev.current, newMax) }));
+        if (stat === 'hp') {
+            setHp(prev => ({ max: newMax, current: Math.min(prev.current, newMax) }));
+        } else if (stat === 'mana') {
+            setMana(prev => ({ max: newMax, current: Math.min(prev.current, newMax) }));
+        } else if (stat === 'vontade') { // ===== ADICIONADO =====
+            setVontade(prev => ({ max: newMax, current: Math.min(prev.current, newMax) }));
+        }
     };
 
     const applyHpChange = (e, amount, isHealing) => {
@@ -152,6 +162,19 @@ export default function Ficha() {
                 setMana({ ...mana, current: clampedMana });
             }
             isRegen ? setRegenValue('') : setCustoValue('');
+        }
+    };
+
+    // ===== NOVA FUNÇÃO AQUI =====
+    const applyVontadeChange = (e, amount, isRegen) => {
+        if (e.key === 'Enter') {
+            const value = parseInt(amount);
+            if (!isNaN(value) && value > 0) {
+                const newCurrentVontade = isRegen ? vontade.current + value : vontade.current - value;
+                const clampedVontade = Math.max(0, Math.min(newCurrentVontade, vontade.max));
+                setVontade({ ...vontade, current: clampedVontade });
+            }
+            isRegen ? setVontadeRegenValue('') : setVontadeGastoValue('');
         }
     };
 
@@ -185,8 +208,6 @@ export default function Ficha() {
     const handleOficioChange = (e) => setSelectedOficio(e.target.value);
     const openOficioModal = () => { if (selectedOficio) setIsOficioModalOpen(true); };
     const closeOficioModal = () => setIsOficioModalOpen(false);
-
-    // ===== NOVA FUNÇÃO AQUI =====
     const handleLevelChange = (e) => {
         setLevel(e.target.value);
     };
@@ -205,12 +226,16 @@ export default function Ficha() {
                 styles={styles}
                 hp={hp} setHp={setHp}
                 mana={mana} setMana={setMana}
+                vontade={vontade} setVontade={setVontade} // Passa o novo state
                 danoValue={danoValue} setDanoValue={setDanoValue}
                 curaValue={curaValue} setCuraValue={setCuraValue}
                 custoValue={custoValue} setCustoValue={setCustoValue}
                 regenValue={regenValue} setRegenValue={setRegenValue}
+                vontadeGastoValue={vontadeGastoValue} setVontadeGastoValue={setVontadeGastoValue} // Passa o novo state
+                vontadeRegenValue={vontadeRegenValue} setVontadeRegenValue={setVontadeRegenValue} // Passa o novo state
                 applyHpChange={applyHpChange}
                 applyManaChange={applyManaChange}
+                applyVontadeChange={applyVontadeChange} // Passa a nova função
                 handleMaxStatChange={handleMaxStatChange}
                 races={races}
                 selectedRace={selectedRace}
@@ -225,8 +250,8 @@ export default function Ficha() {
                 selectedOficio={selectedOficio}
                 handleOficioChange={handleOficioChange}
                 openOficioModal={openOficioModal}
-                level={level} // Passa o nível
-                handleLevelChange={handleLevelChange} // Passa a função de mudança
+                level={level}
+                handleLevelChange={handleLevelChange}
             />
             <ColunaMeio
                 styles={styles}
@@ -247,7 +272,7 @@ export default function Ficha() {
                 maxWeight={maxWeight}
                 currentWeight={currentWeight}
                 penalty={penalty}
-                level={level} // Passa o nível
+                level={level}
             />
             <ColunaDireita
                 styles={styles}

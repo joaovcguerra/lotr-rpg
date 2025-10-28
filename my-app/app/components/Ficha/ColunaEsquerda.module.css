@@ -180,6 +180,10 @@
     background-color: #2a5a8c;
 }
 
+.vontadeBar {
+    background-color: #f0c36d;
+}
+
 .statusBarValues {
     position: relative;
     z-index: 2;

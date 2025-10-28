@@ -4,12 +4,18 @@
 import { FaInfoCircle } from 'react-icons/fa';
 
 export default function ColunaEsquerda({
-    styles, hp, setHp, mana, setMana, danoValue, setDanoValue, curaValue, setCuraValue,
-    custoValue, setCustoValue, regenValue, setRegenValue, applyHpChange, applyManaChange, handleMaxStatChange,
+    styles, hp, setHp, mana, setMana,
+    vontade, setVontade, // <-- Propriedades da nova barra
+    danoValue, setDanoValue, curaValue, setCuraValue,
+    custoValue, setCustoValue, regenValue, setRegenValue,
+    vontadeGastoValue, setVontadeGastoValue, // <-- Propriedades da nova barra
+    vontadeRegenValue, setVontadeRegenValue, // <-- Propriedades da nova barra
+    applyHpChange, applyManaChange, applyVontadeChange, // <-- Propriedades da nova barra
+    handleMaxStatChange,
     races, selectedRace, handleRaceChange, classes, selectedClass, handleClassChange,
     availableSubclasses, selectedSubclass, handleSubclassChange, oficios, selectedOficio,
     handleOficioChange, openOficioModal,
-    level, handleLevelChange // Props que vamos usar agora
+    level, handleLevelChange
 }) {
     return (
         <div className={styles.column}>
@@ -32,7 +38,6 @@ export default function ColunaEsquerda({
                             </select>
                         </div>
                     </div>
-                    {/* ===== CAMPO DE NÍVEL ATUALIZADO AQUI ===== */}
                     <div className={styles.field}>
                         <label>Nível:</label>
                         <input
@@ -89,6 +94,7 @@ export default function ColunaEsquerda({
             </div>
             <div className={styles.section}>
                 <h2 className={styles.sectionTitle}>Status</h2>
+                {/* Barra de HP */}
                 <h4 className={styles.barTitle}>Pontos de Vida</h4>
                 <div className={styles.statusBarContainer}>
                     <button className={styles.statusBarButton} onClick={() => setHp(prev => ({ ...prev, current: prev.current - 1 }))}>-</button>
@@ -106,6 +112,8 @@ export default function ColunaEsquerda({
                     <div className={styles.changeInputField}><label>Dano</label><input type="number" className={styles.smallInput} value={danoValue} onChange={(e) => setDanoValue(e.target.value)} onKeyDown={(e) => applyHpChange(e, danoValue, false)} /></div>
                     <div className={styles.changeInputField}><label>Cura</label><input type="number" className={styles.smallInput} value={curaValue} onChange={(e) => setCuraValue(e.target.value)} onKeyDown={(e) => applyHpChange(e, curaValue, true)} /></div>
                 </div>
+
+                {/* Barra de Mana */}
                 <h4 className={styles.barTitle}>Mana</h4>
                 <div className={styles.statusBarContainer}>
                     <button className={styles.statusBarButton} onClick={() => setMana(prev => ({ ...prev, current: prev.current - 1 }))}>-</button>
@@ -123,6 +131,27 @@ export default function ColunaEsquerda({
                     <div className={styles.changeInputField}><label>Gasto</label><input type="number" className={styles.smallInput} value={custoValue} onChange={(e) => setCustoValue(e.target.value)} onKeyDown={(e) => applyManaChange(e, custoValue, false)} /></div>
                     <div className={styles.changeInputField}><label>Regeneração</label><input type="number" className={styles.smallInput} value={regenValue} onChange={(e) => setRegenValue(e.target.value)} onKeyDown={(e) => applyManaChange(e, regenValue, true)} /></div>
                 </div>
+
+                {/* ===== NOVA BARRA DE FORÇA DE VONTADE ===== */}
+                <h4 className={styles.barTitle}>Força de Vontade</h4>
+                <div className={styles.statusBarContainer}>
+                    <button className={styles.statusBarButton} onClick={() => setVontade(prev => ({ ...prev, current: prev.current - 1 }))}>-</button>
+                    <div className={styles.statusBar}>
+                        <div className={`${styles.statusBarFill} ${styles.vontadeBar}`} style={{ width: `${(vontade.current / vontade.max) * 100}%` }}></div>
+                        <div className={styles.statusBarValues}>
+                            <input type="text" inputMode="numeric" value={vontade.current} onChange={(e) => setVontade({ ...vontade, current: Math.min(parseInt(e.target.value) || 0, vontade.max) })} className={styles.maxStatInput} />
+                            <span>|</span>
+                            <input type="text" inputMode="numeric" value={vontade.max} onChange={(e) => handleMaxStatChange('vontade', e.target.value)} className={styles.maxStatInput} />
+                        </div>
+                    </div>
+                    <button className={styles.statusBarButton} onClick={() => setVontade(prev => ({ ...prev, current: prev.current + 1 }))}>+</button>
+                </div>
+                <div className={styles.changeInputContainer}>
+                    <div className={styles.changeInputField}><label>Gasto</label><input type="number" className={styles.smallInput} value={vontadeGastoValue} onChange={(e) => setVontadeGastoValue(e.target.value)} onKeyDown={(e) => applyVontadeChange(e, vontadeGastoValue, false)} /></div>
+                    <div className={styles.changeInputField}><label>Regeneração</label><input type="number" className={styles.smallInput} value={vontadeRegenValue} onChange={(e) => setVontadeRegenValue(e.target.value)} onKeyDown={(e) => applyVontadeChange(e, vontadeRegenValue, true)} /></div>
+                </div>
+
+                {/* Outros Status */}
                 <div className={styles.otherStats}>
                     <p><strong>Energia de Jornada:</strong> Y</p>
                     <p><strong>Barra de Vontade:</strong> Z</p>

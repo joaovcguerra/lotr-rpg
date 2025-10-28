@@ -15,7 +15,14 @@ export default function ColunaEsquerda({
     races, selectedRace, handleRaceChange, classes, selectedClass, handleClassChange,
     availableSubclasses, selectedSubclass, handleSubclassChange, oficios, selectedOficio,
     handleOficioChange, openOficioModal,
-    level, handleLevelChange
+    level, handleLevelChange,
+
+    // ===== RECEBENDO AS NOVAS PROPS AQUI =====
+    deslocamentoString,
+    hpDadoString,
+    manaDadoString,
+    socoDadoString,
+    vontadeDadoString // <-- NOVA PROP RECEBIDA
 }) {
     return (
         <div className={styles.column}>
@@ -151,11 +158,13 @@ export default function ColunaEsquerda({
                     <div className={styles.changeInputField}><label>Regeneração</label><input type="number" className={styles.smallInput} value={vontadeRegenValue} onChange={(e) => setVontadeRegenValue(e.target.value)} onKeyDown={(e) => applyVontadeChange(e, vontadeRegenValue, true)} /></div>
                 </div>
 
-                {/* Outros Status */}
+                {/* ===== SEÇÃO DE OUTROS STATUS ATUALIZADA ===== */}
                 <div className={styles.otherStats}>
-                    <p><strong>Energia de Jornada:</strong> Y</p>
-                    <p><strong>Barra de Vontade:</strong> Z</p>
-                    <p><strong>Deslocamento:</strong> X</p>
+                    <p><strong>Deslocamento:</strong> {deslocamentoString}</p>
+                    <p><strong>Dado de Soco:</strong> {socoDadoString}</p>
+                    <p><strong>Dado de HP:</strong> {hpDadoString}</p>
+                    <p><strong>Dado de Mana:</strong> {manaDadoString}</p>
+                    <p><strong>Dado de Força de Vontade:</strong> {vontadeDadoString}</p>
                 </div>
             </div>
         </div>

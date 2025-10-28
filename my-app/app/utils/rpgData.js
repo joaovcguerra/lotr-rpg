@@ -1,6 +1,10 @@
 export const races = [
     {
         nome: 'Anões',
+        deslocamento: '18 km por dia',
+        hpDice: { num: 3, mod: '+constituicao' },
+        manaDie: { sides: 6, mod: '' },
+        socoDie: { sides: 8, mod: '+forca' },
         talentos: [
             {
                 nome: 'Natureza inflexível',
@@ -26,6 +30,10 @@ export const races = [
     },
     {
         nome: 'Elfos',
+        deslocamento: '30 km por dia',
+        hpDice: { num: 3, mod: '++constituicao_mod' },
+        manaDie: { sides: 10, mod: '++sabedoria' },
+        socoDie: { sides: 6, mod: '+forca' },
         talentos: [
             {
                 nome: 'Leveza élfica',
@@ -51,6 +59,10 @@ export const races = [
     },
     {
         nome: 'Ents',
+        deslocamento: '9 km por dia',
+        hpDice: { num: 4, mod: '++constituicao/2' },
+        manaDie: { sides: 6, mod: '+sabedoria' },
+        socoDie: { sides: 12, mod: '++forca' },
         talentos: [
             {
                 nome: 'É só uma árvore',
@@ -76,6 +88,10 @@ export const races = [
     },
     {
         nome: 'Hobbits',
+        deslocamento: '40 km por dia',
+        hpDice: { num: 2, mod: '+constituicao_mod' },
+        manaDie: { sides: 8, mod: '' },
+        socoDie: { sides: 4, mod: '' },
         talentos: [
             {
                 nome: 'Pequeninos',
@@ -101,6 +117,10 @@ export const races = [
     },
     {
         nome: 'Humanos',
+        deslocamento: '30 km por dia',
+        hpDice: { num: 3, mod: '+constituicao_mod' },
+        manaDie: { sides: 8, mod: '++sabedoria' },
+        socoDie: { sides: 8, mod: '+forca' },
         talentos: [
             {
                 nome: 'Dedicação dos Homens',
@@ -126,6 +146,10 @@ export const races = [
     },
     {
         nome: 'Troca-peles',
+        deslocamento: '23 km por dia',
+        hpDice: { num: 4, mod: '+constituicao V' }, // Usei 'V' para 'Vantagem'
+        manaDie: { sides: 8, mod: '+sabedoria' },
+        socoDie: { sides: 8, mod: '+forca' },
         talentos: [
             {
                 nome: 'Corpo forte',
@@ -292,6 +316,9 @@ export const valar = [
 export const classes = [
     {
         nome: 'Bárbaro',
+        hpDie: { sides: 12 },
+        manaDice: { num: 4 },
+        socoDice: { num: 4 },
         subclasses: [
             {
                 nome: 'Fúria Ancestral',
@@ -336,6 +363,9 @@ export const classes = [
     },
     {
         nome: 'Caçador',
+        hpDie: { sides: 8 },
+        manaDice: { num: 2 },
+        socoDice: { num: 3 },
         subclasses: [
             {
                 nome: 'Caçadores de Dragões',
@@ -380,6 +410,9 @@ export const classes = [
     },
     {
         nome: 'Cavaleiro',
+        hpDie: { sides: 8 },
+        manaDice: { num: 2 },
+        socoDice: { num: 3 },
         subclasses: [
             {
                 nome: 'Senhores dos Cavalos',
@@ -424,6 +457,9 @@ export const classes = [
     },
     {
         nome: 'Ladrão',
+        hpDie: { sides: 6 },
+        manaDice: { num: 1 },
+        socoDice: { num: 2 },
         subclasses: [
             {
                 nome: 'Línguas Trapaceiras',
@@ -455,6 +491,9 @@ export const classes = [
     },
     {
         nome: 'Paladino',
+        hpDie: { sides: 10 },
+        manaDice: { num: 3 },
+        socoDice: { num: 4 },
         subclasses: [
             {
                 nome: 'Sangue dos Imortais',
@@ -499,6 +538,9 @@ export const classes = [
     },
     {
         nome: 'Sábio',
+        hpDie: { sides: 4 },
+        manaDice: { num: 5 },
+        socoDice: { num: 2 },
         subclasses: [
             {
                 nome: 'Sabedoria dos Homens',
